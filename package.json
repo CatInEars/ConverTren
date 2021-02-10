@@ -40,5 +40,6 @@
     "jest-expo": "~40.0.0",
     "typescript": "~4.0.0"
   },
-  "private": true
+  "private": true,
+  "author": "CatInEars"
 }
