@@ -4,12 +4,10 @@
 */
 
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Main } from './src/index';
 
 export default function App() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>ConverTren App</Text>
-    </View>
+    <Main />
   );
 }
