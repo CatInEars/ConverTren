@@ -5,7 +5,7 @@ import { commonStyles } from '../../common/commonStyles';
 export function Profile() {
   return (
     <View style={commonStyles._center}>
-      <Text>Profile Text</Text>
+      <Text style={commonStyles.infoText}>Profile Text</Text>
     </View>
   );
 }

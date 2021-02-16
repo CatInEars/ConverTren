@@ -5,7 +5,7 @@ import { commonStyles } from '../../common/commonStyles';
 export function Tren() {
   return (
     <View style={commonStyles._center}>
-      <Text>Tren Text</Text>
+      <Text style={commonStyles.infoText}>Tren Text</Text>
     </View>
   );
 }

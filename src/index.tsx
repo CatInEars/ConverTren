@@ -5,24 +5,37 @@ import { TrenScreen } from './navigation/screens/TrenScreen';
 import { StatsScreen } from './navigation/screens/StatsScreen';
 import { ConverterScreen } from './navigation/screens/ConverterScreen'
 import { ProfileScreen } from './navigation/screens/ProfileScreen'
-import { Provider } from 'react-redux';
-import { globalState } from './modules/store/globalState';
-import { getLocalOptions } from './modules/navigation/getOptions';
+import { connect } from 'react-redux';
+import { getScreenOptions } from './modules/navigation/getScreenOptions';
+import { StatusBar } from 'react-native';
+import { CustomTabBar } from './navigation/modules/CustomTabBar';
+
+type IProps = IStateProps;
+
+interface IStateProps {
+  language: ILanguage
+}
 
 const Tab = createBottomTabNavigator();
 
-export function Main() {
+function main({ language }: IProps) {
   return (
-    <Provider store={globalState}>
+    <>
       <NavigationContainer>
         <Tab.Navigator 
-          screenOptions={ 
-            ({route}: any) => 
-              getLocalOptions(
-                route.name, 
-                globalState.getState().localization
-              )
+          screenOptions={
+            ({route}: any) => getScreenOptions(
+              route.name, 
+              language
+            )
           }
+          tabBar={(props: any) => <CustomTabBar {...props}/>}
+          tabBarOptions={{
+            keyboardHidesTabBar: true,
+            // labelStyle: {
+            //   fontFamily: ''
+            // }
+          }}
         >
           <Tab.Screen name="Tren" component={TrenScreen} />
           <Tab.Screen name="Stats" component={StatsScreen} />
@@ -30,6 +43,13 @@ export function Main() {
           <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
       </NavigationContainer>
-    </Provider>
+      <StatusBar barStyle="light-content" />
+    </>
   );
 }
+
+export const Main = connect(
+  (state: IState): IStateProps => ({
+    language: state.localization
+  })
+)(main);

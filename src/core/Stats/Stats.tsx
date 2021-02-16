@@ -5,7 +5,7 @@ import { commonStyles } from '../../common/commonStyles';
 export function Stats() {
   return (
     <View style={commonStyles._center}>
-      <Text>Stats Text</Text>
+      <Text style={commonStyles.infoText}>Stats Text</Text>
     </View>
   );
 }

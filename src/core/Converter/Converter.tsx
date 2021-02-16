@@ -5,7 +5,7 @@ import { commonStyles } from '../../common/commonStyles';
 export function Converter() {
   return (
     <View style={commonStyles._center}>
-      <Text>Converter Text</Text>
+      <Text style={commonStyles.infoText}>Converter Text</Text>
     </View>
   );
 }
