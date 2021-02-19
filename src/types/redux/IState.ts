@@ -1,5 +1,8 @@
+type Theme = 'DARK' | 'LIGHT'
+
 interface IState {
-  localization: ILanguage
+  localization: ILanguage,
+  theme: Theme
 }
 
 type ILanguage = 'rus' | 'eng'

@@ -22,7 +22,7 @@ function main({ language }: IProps) {
   return (
     <>
       <NavigationContainer>
-        <Tab.Navigator 
+        <Tab.Navigator
           screenOptions={
             ({route}: any) => getScreenOptions(
               route.name, 
@@ -30,12 +30,6 @@ function main({ language }: IProps) {
             )
           }
           tabBar={(props: any) => <CustomTabBar {...props}/>}
-          tabBarOptions={{
-            keyboardHidesTabBar: true,
-            // labelStyle: {
-            //   fontFamily: ''
-            // }
-          }}
         >
           <Tab.Screen name="Tren" component={TrenScreen} />
           <Tab.Screen name="Stats" component={StatsScreen} />

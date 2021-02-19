@@ -1,3 +1,4 @@
 export const initialState: IState = {
-  localization: 'rus'
+  localization: 'rus',
+  theme: 'DARK'
 }

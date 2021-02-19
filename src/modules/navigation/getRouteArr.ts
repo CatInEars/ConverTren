@@ -5,9 +5,9 @@ export function getRouteArr(descriptors: any, state: any) {
   for (let key in descriptors) {
     routeArr.push({
       ...descriptors[key].options,
-      routeName: state.routeNames[index]
+      routeName: state.routeNames[index++],
+      isFocused: descriptors[key].navigation.isFocused
     });
-    index++;
   }
 
   return routeArr;

@@ -3,22 +3,17 @@ import { ProfileTabIcon } from '../../core/svgs/ProfileTabIcon';
 import { StatsTabIcon } from '../../core/svgs/StatsTabIcon';
 import { TrenTabIcon } from '../../core/svgs/TrenTabIcon';
 
-interface IProps {
-  color: string,
-  focused: boolean
-}
-
 interface IObj {
-  [propName: string]: ({}: IProps) => JSX.Element
+  [propName: string]: (props: any) => JSX.Element
 }
 
 export const tabIconsObj: IObj = {
-  Tren: ({ color, focused }: IProps) => 
-    <TrenTabIcon fill={color} width={focused ? 25 : 23} height={focused ? 25 : 23} />,
-  Stats: ({ color, focused }: IProps) => 
-    <StatsTabIcon fill={color} width={focused ? 25 : 23} height={focused ? 25 : 23} />,
-  Converter: ({ color, focused }: IProps) => 
-    <StatsTabIcon fill={color} width={focused ? 25 : 23} height={focused ? 25 : 23} />,
-  Profile: ({ color, focused }: IProps) => 
-    <ProfileTabIcon fill={color} width={focused ? 25 : 23} height={focused ? 25 : 23} />
+  Tren: (props) => 
+    <TrenTabIcon width='100%' height='100%' {...props} />,
+  Stats: (props) => 
+    <StatsTabIcon width='100%' height='100%' {...props} />,
+  Converter: (props) => 
+    <StatsTabIcon width='100%' height='100%' {...props} />,
+  Profile: (props) => 
+    <ProfileTabIcon width='100%' height='100%' {...props} />
 }

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableHighlight } from 'react-native';
+import { View } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
 import { getRouteArr } from '../../modules/navigation/getRouteArr';
+import { TabBarButton } from './TabBarButton';
 
-interface IRoute {
+export interface IRoute {
   routeName: string,
   title: string,
-  tabBarIcon: any
+  tabBarIcon: any,
+  isFocused: () => boolean,
+  navigation: any
 }
 
 export function CustomTabBar({ state, descriptors, navigation }: any) {
@@ -16,22 +19,13 @@ export function CustomTabBar({ state, descriptors, navigation }: any) {
 
   return (
     <View style={commonStyles.tabNavigatorContainer}>
-      {routreArr.map((item: IRoute, index) => {
-        const Icon = item.tabBarIcon;
-
-        return (
-          <TouchableHighlight
-            style={commonStyles.tabNavigatorButton}
-            onPress={() => navigation.navigate(item.routeName)}
-            key={index.toString()}
-          >
-            <>
-              <Icon color='white' />
-              <Text style={commonStyles.infoText}>{item.title}</Text>
-            </>
-          </TouchableHighlight>
-        )
-      })}
+      {routreArr.map((item: IRoute, index) => (
+        <TabBarButton 
+          {...item} 
+          navigation={navigation} 
+          key={index.toString()} 
+        />
+      ))}
     </View>
   );
 }
