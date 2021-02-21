@@ -1,8 +1,8 @@
 import React from 'react';
-import { ConverterTabIcon } from '../../core/svgs/ConverterTabIcon';
-import { ProfileTabIcon } from '../../core/svgs/ProfileTabIcon';
-import { StatsTabIcon } from '../../core/svgs/StatsTabIcon';
-import { TrenTabIcon } from '../../core/svgs/TrenTabIcon';
+import { ConverterTabIcon } from '../../core/svgs/TabBarIcons/ConverterTabIcon';
+import { ProfileTabIcon } from '../../core/svgs/TabBarIcons/ProfileTabIcon';
+import { StatsTabIcon } from '../../core/svgs/TabBarIcons/StatsTabIcon';
+import { TrenTabIcon } from '../../core/svgs/TabBarIcons/TrenTabIcon';
 
 interface IObj {
   [propName: string]: (props: any) => JSX.Element

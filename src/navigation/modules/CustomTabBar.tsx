@@ -12,7 +12,7 @@ export function CustomTabBar({ state, descriptors, navigation }: any) {
 
   return (
     <View style={commonStyles.tabNavigatorContainer}>
-      {routreArr.map((item: any) => {
+      {routreArr.map((item: any, index) => {
         const focused = item.isFocused();
         
         return (
@@ -22,6 +22,7 @@ export function CustomTabBar({ state, descriptors, navigation }: any) {
             rippleOpacity={0.5}
             style={commonStyles.tabNavigatorButton}
             onPress={() => navigation.navigate(item.routeName)}
+            key={index.toString()}
           >
             <TabBarButton 
               {...item}
