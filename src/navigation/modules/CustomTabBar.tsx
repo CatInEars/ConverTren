@@ -3,14 +3,7 @@ import { View } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
 import { getRouteArr } from '../../modules/navigation/getRouteArr';
 import { TabBarButton } from './TabBarButton';
-
-export interface IRoute {
-  routeName: string,
-  title: string,
-  tabBarIcon: any,
-  isFocused: () => boolean,
-  navigation: any
-}
+import Ripple from 'react-native-material-ripple';
 
 export function CustomTabBar({ state, descriptors, navigation }: any) {
   const [routreArr, setRouteArr] = useState(
@@ -19,13 +12,24 @@ export function CustomTabBar({ state, descriptors, navigation }: any) {
 
   return (
     <View style={commonStyles.tabNavigatorContainer}>
-      {routreArr.map((item: IRoute, index) => (
-        <TabBarButton 
-          {...item} 
-          navigation={navigation} 
-          key={index.toString()} 
-        />
-      ))}
+      {routreArr.map((item: any) => {
+        const focused = item.isFocused();
+        
+        return (
+          <Ripple
+            rippleDuration={450}
+            rippleColor='#707070'
+            rippleOpacity={0.5}
+            style={commonStyles.tabNavigatorButton}
+            onPress={() => navigation.navigate(item.routeName)}
+          >
+            <TabBarButton 
+              {...item}
+              focused={focused}
+            />
+          </Ripple>
+        )
+      })}
     </View>
   );
 }

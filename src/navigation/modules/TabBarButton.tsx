@@ -1,42 +1,46 @@
 import React from 'react';
-import { Text, Animated } from 'react-native';
+import { Text, View } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
-import { IRoute } from './CustomTabBar';
-import Ripple from 'react-native-material-ripple';
+import { connect } from 'react-redux';
 
-export function TabBarButton({ 
+function tabBarButton({ 
   tabBarIcon, 
   isFocused, 
-  title, 
-  navigation, 
-  routeName
-}: IRoute) {
+  title,
+  theme
+}: any) {
   const Icon = tabBarIcon;
   const focused = isFocused();
 
   return (
-    <Ripple
-      rippleDuration={450}
-      rippleColor='#707070'
-      rippleOpacity={0.5}
-      style={commonStyles.tabNavigatorButton}
-      onPress={() => navigation.navigate(routeName)}
-    >
-      <>
-        <Animated.View 
-          style={{ width: 30, height: 30}}
-        >
-          <Icon fill={focused ? 'white' : '#666666'} />
-        </Animated.View>
-        {
-          focused ?
-          <Animated.View>
-            <Text style={commonStyles.infoText}>{title}</Text>
-          </Animated.View>
-          :
-          null
-        }
-      </>
-    </Ripple>
+    <>
+      <View
+        style={{ width: 25, height: 25}}
+      >
+        <Icon 
+          fill={
+            focused ? 
+              (theme === 'DARK' ? 'white' : 'black') 
+            : 
+              '#666666'
+          } 
+        />
+      </View>
+
+      {
+        focused ?
+        <View>
+          <Text style={commonStyles.infoText}>{title}</Text>
+        </View>
+        :
+        null
+      }
+    </>
   );
 }
+
+export const TabBarButton = connect(
+  (state: IState) => ({
+    theme: state.theme
+  }) 
+)(tabBarButton);
