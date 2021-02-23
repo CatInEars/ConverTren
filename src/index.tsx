@@ -19,6 +19,7 @@ interface IStateProps {
 const Tab = createBottomTabNavigator();
 
 function main({ language }: IProps) {
+  
   return (
     <>
       <NavigationContainer>

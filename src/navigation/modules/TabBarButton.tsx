@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
-import { connect } from 'react-redux';
+import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { DARK, DARK_ICON_COLOR, LIGHT_ICON_COLOR } from '../../common/themes';
+import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 
-function tabBarButton({ 
+export function TabBarButton({ 
   tabBarIcon, 
   isFocused, 
-  title,
-  theme
+  title
 }: any) {
   const Icon = tabBarIcon;
   const focused = isFocused();
+  const { theme } = useContext(ThemeContext);
 
   return (
     <>
@@ -20,7 +22,7 @@ function tabBarButton({
         <Icon 
           fill={
             focused ? 
-              (theme === 'DARK' ? 'white' : 'black') 
+              (theme === DARK ? DARK_ICON_COLOR : LIGHT_ICON_COLOR) 
             : 
               '#666666'
           } 
@@ -30,7 +32,14 @@ function tabBarButton({
       {
         focused ?
         <View>
-          <Text style={commonStyles.infoText}>{title}</Text>
+          <Text 
+            style={{
+              ...commonStyles.infoText,
+              color: getTextColorWithTheme(theme)
+            }}
+          >
+            {title}
+          </Text>
         </View>
         :
         null
@@ -38,9 +47,3 @@ function tabBarButton({
     </>
   );
 }
-
-export const TabBarButton = connect(
-  (state: IState) => ({
-    theme: state.theme
-  }) 
-)(tabBarButton);
