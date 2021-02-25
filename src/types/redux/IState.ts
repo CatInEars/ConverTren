@@ -13,5 +13,5 @@ interface ILocalizationObj {
 }
 
 type ILocalization = {
-  [propName in ILanguage]: string;
+  [propName: string]: string;
 };

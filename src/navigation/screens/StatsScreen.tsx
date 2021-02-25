@@ -11,7 +11,7 @@ export function StatsScreen() {
       <Stack.Screen 
         name='Stats' 
         component={Stats} 
-        options={{header: StackHeader}} 
+        options={{header: props => <StackHeader {...props} />}} 
       />
     </Stack.Navigator>
   );

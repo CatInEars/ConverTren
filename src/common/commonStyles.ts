@@ -21,5 +21,15 @@ export const commonStyles = StyleSheet.create({
   },
   infoText: {
     
+  },
+  stackHeader: {
+    width: '100%', 
+    height: 70,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 2,
+    borderStyle: 'solid',
+  },
+  stackHeaderTitle: {
+    fontSize: 24,
   }
 });

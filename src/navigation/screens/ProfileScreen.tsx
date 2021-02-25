@@ -11,7 +11,7 @@ export function ProfileScreen() {
       <Stack.Screen 
         name='Profile' 
         component={Profile} 
-        options={{header: StackHeader}} 
+        options={{header: props => <StackHeader {...props} />}} 
       />
     </Stack.Navigator>
   );

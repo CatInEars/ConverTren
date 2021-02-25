@@ -11,7 +11,7 @@ export function ConverterScreen() {
       <Stack.Screen 
         name='Converter' 
         component={Converter} 
-        options={{header: StackHeader}} 
+        options={{header: props => <StackHeader {...props} />}} 
       />
     </Stack.Navigator>
   );

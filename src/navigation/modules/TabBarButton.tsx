@@ -4,11 +4,14 @@ import { commonStyles } from '../../common/commonStyles';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { DARK, DARK_ICON_COLOR, LIGHT_ICON_COLOR } from '../../common/themes';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
+import { localization } from '../../modules/localization/localization';
+import { connect } from 'react-redux';
 
-export function TabBarButton({ 
+function tabBarButton({ 
   tabBarIcon, 
   isFocused, 
-  title
+  routeName,
+  lang
 }: any) {
   const Icon = tabBarIcon;
   const focused = isFocused();
@@ -38,7 +41,7 @@ export function TabBarButton({
               color: getTextColorWithTheme(theme)
             }}
           >
-            {title}
+            {localization.navigation[routeName].title[lang]}
           </Text>
         </View>
         :
@@ -47,3 +50,9 @@ export function TabBarButton({
     </>
   );
 }
+
+export const TabBarButton = connect(
+  (state: IState) => ({
+    lang: state.localization
+  })
+)(tabBarButton);

@@ -11,7 +11,7 @@ export function TrenScreen() {
       <Stack.Screen 
         name='Tren' 
         component={Tren}
-        options={{header: StackHeader}} 
+        options={{header: props => <StackHeader {...props} />}} 
       />
     </Stack.Navigator>
   );
