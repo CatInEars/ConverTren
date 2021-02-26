@@ -1,45 +1,57 @@
-import React, { Dispatch, useContext } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
-import { DARK, LIGHT } from '../../common/themes';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { Quote } from './Quote';
+import { StartButton } from './StartButton';
 
-function tren({ onChangeLocalization }: any) {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+function tren() {
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <View style={{
-      ...commonStyles._center,
-      backgroundColor: getBGCWithTheme(theme)
-    }}>
-      <Text 
-        style={{
-          ...commonStyles.infoText,
-          color: getTextColorWithTheme(theme)
-        }}
-      >
-        Tren Text
-      </Text>
-      <Button 
-        title='CHANGE THEME'
-        onPress={() => toggleTheme(theme === DARK ? LIGHT : DARK)}
-      />
-      <Button 
-        title='CHANGE LANG'
-        onPress={() => onChangeLocalization('eng')}
-      />
+    <View 
+      style={{
+        ...commonStyles.trenScreenContainer,
+        backgroundColor: getBGCWithTheme(theme)
+      }}
+    >
+      <View>
+        <Text 
+          style={{
+            ...commonStyles.trenLogoText,
+            color: getTextColorWithTheme(theme)
+          }}
+        >
+          ConverTren
+        </Text>
+      </View>
+      
+      <View style={commonStyles.trenStatsTextContainer}>
+        <Text
+          style={{
+            color: getTextColorWithTheme(theme)
+          }}
+        >
+          Последняя попытка: --
+        </Text>
+
+        <Text
+          style={{
+            color: getTextColorWithTheme(theme)
+          }}
+        >
+          Лучшая попытка: --
+        </Text>
+      </View>
+
+      <StartButton /> 
+
+      <Quote />
     </View>
   );
 }
 
-export const Tren = connect(
-  () => ({}),
-  (dispatch: Dispatch<ILanguageAction>) => ({
-    onChangeLocalization: (lang: ILanguage) => {
-      dispatch({type: 'CHANGE_LOCALIZATION', languageSet: lang})
-    }
-  })
-)(tren);
+export const Tren = connect()(tren);
