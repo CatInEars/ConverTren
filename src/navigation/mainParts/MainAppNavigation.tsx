@@ -9,6 +9,9 @@ export function MainAppNavigation() {
   return (
     <Stack.Navigator
       headerMode='none'
+      screenOptions={{
+        animationEnabled: false
+      }}
     >
       <Stack.Screen name="MainApp" component={MainTabNavigator} />
       <Stack.Screen name="TreningMode" component={TrenModeScreen} />
