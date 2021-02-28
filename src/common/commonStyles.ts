@@ -21,8 +21,8 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  infoText: {
-    
+  tabBarButtonText: {
+    fontFamily: 'OpenSans-Regular'
   },
   stackHeader: {
     width: '100%', 
@@ -33,6 +33,7 @@ export const commonStyles = StyleSheet.create({
   },
   stackHeaderTitle: {
     fontSize: 24,
+    fontFamily: 'OpenSans-Regular'
   },
   trenScreenContainer: {
     flex: 1,
@@ -41,11 +42,15 @@ export const commonStyles = StyleSheet.create({
     paddingTop: 196
   },
   trenLogoText: {
-    fontSize: 36
+    fontSize: 36,
+    fontFamily: 'OpenSans-Regular'
   },
   trenStatsTextContainer: {
     marginTop: 12,
     alignItems: 'center'
+  },
+  trenStatsText: {
+    fontFamily: 'OpenSans-Regular'
   },
   trenStartButtonContainer: {
     marginTop: 32,
@@ -63,7 +68,8 @@ export const commonStyles = StyleSheet.create({
   trenStartButtonText: {
     color: 'white',
     textTransform: 'uppercase',
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'OpenSans-Regular'
   },
   trenQuoteContainer: {
     marginTop: 48

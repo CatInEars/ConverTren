@@ -37,7 +37,8 @@ function tren({ lang }: IProps) {
       <View style={commonStyles.trenStatsTextContainer}>
         <Text
           style={{
-            color: getTextColorWithTheme(theme)
+            color: getTextColorWithTheme(theme),
+            ...commonStyles.trenStatsText
           }}
         >
           {localization.TrenScreen.lastAttempt[lang]}: --
@@ -45,7 +46,8 @@ function tren({ lang }: IProps) {
 
         <Text
           style={{
-            color: getTextColorWithTheme(theme)
+            color: getTextColorWithTheme(theme),
+            ...commonStyles.trenStatsText
           }}
         >
           {localization.TrenScreen.bestAttempt[lang]}: --

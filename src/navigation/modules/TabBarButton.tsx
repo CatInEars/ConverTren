@@ -37,7 +37,7 @@ function tabBarButton({
         <View>
           <Text 
             style={{
-              ...commonStyles.infoText,
+              ...commonStyles.tabBarButtonText,
               color: getTextColorWithTheme(theme)
             }}
           >

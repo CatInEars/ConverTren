@@ -21,7 +21,7 @@ export function Quote({ lang }: IProps) {
         <Text
           style={{
             ...commonStyles.trenQuoteText,
-            fontStyle: 'italic'
+            fontFamily: 'OpenSans-Italic'
           }}
         >
           {quoteArr[randomQuote].quote[lang]}
@@ -32,7 +32,10 @@ export function Quote({ lang }: IProps) {
         style={{alignItems: 'flex-end', marginTop: 12}}
       >
         <Text
-          style={commonStyles.trenQuoteText}
+          style={{
+            ...commonStyles.trenQuoteText,
+            fontFamily: 'OpenSans-SemiBold'
+          }}
         >
           {quoteArr[randomQuote].author[lang]}
         </Text>
