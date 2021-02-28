@@ -1,4 +1,4 @@
-export const localization: ILocalizationObj = {
+export const localization: any = {
   navigation: {
     Tren: {
       title: {
@@ -23,6 +23,20 @@ export const localization: ILocalizationObj = {
         rus: 'Профиль',
         eng: 'Profile'
       }
+    }
+  },
+  TrenScreen: {
+    lastAttempt: {
+      rus: 'Последняя попытка',
+      eng: 'Last attempt'
+    },
+    bestAttempt: {
+      rus: 'Лучшая попытка',
+      eng: 'Best attempt'
+    },
+    startButton: {
+      rus: 'Начать тренировку',
+      eng: 'Start tren'
     }
   }
 }

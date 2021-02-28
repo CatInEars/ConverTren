@@ -2,13 +2,18 @@ import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
+import { localization } from '../../modules/localization/localization';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { Quote } from './Quote';
 import { StartButton } from './StartButton';
 
-function tren() {
+interface IProps {
+  lang: ILanguage
+}
+
+function tren({ lang }: IProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -35,7 +40,7 @@ function tren() {
             color: getTextColorWithTheme(theme)
           }}
         >
-          Последняя попытка: --
+          {localization.TrenScreen.lastAttempt[lang]}: --
         </Text>
 
         <Text
@@ -43,15 +48,19 @@ function tren() {
             color: getTextColorWithTheme(theme)
           }}
         >
-          Лучшая попытка: --
+          {localization.TrenScreen.bestAttempt[lang]}: --
         </Text>
       </View>
 
-      <StartButton /> 
+      <StartButton lang={lang} /> 
 
-      <Quote />
+      <Quote lang={lang} />
     </View>
   );
 }
 
-export const Tren = connect()(tren);
+export const Tren = connect(
+  (state: IState) => ({
+    lang: state.localization
+  })
+)(tren);

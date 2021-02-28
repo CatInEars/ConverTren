@@ -1,4 +1,8 @@
 interface IQuoteArr {
-  quote: string,
-  author: string
+  quote: {
+    [propName in ILanguage]: string
+  },
+  author: {
+    [propName in ILanguage]: string
+  }
 }

@@ -9,10 +9,12 @@ export function Stats() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <View style={{
-      ...commonStyles._center,
-      backgroundColor: getBGCWithTheme(theme)
-    }}>
+    <View 
+      style={{
+        ...commonStyles._center,
+        backgroundColor: getBGCWithTheme(theme)
+      }}
+    >
       <Text 
         style={{
           ...commonStyles.infoText,

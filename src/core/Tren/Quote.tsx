@@ -4,7 +4,11 @@ import { commonStyles } from '../../common/commonStyles';
 import { getRandom } from '../../modules/getRandom';
 import { quoteArr } from '../../modules/quoteArr';
 
-export function Quote() {
+interface IProps {
+  lang: ILanguage
+}
+
+export function Quote({ lang }: IProps) {
   const [randomQuote, setRandomQuote] = useState(
     getRandom(0, quoteArr.length)
   );
@@ -20,7 +24,7 @@ export function Quote() {
             fontStyle: 'italic'
           }}
         >
-          {quoteArr[randomQuote].quote}
+          {quoteArr[randomQuote].quote[lang]}
         </Text>
       </View>
 
@@ -30,7 +34,7 @@ export function Quote() {
         <Text
           style={commonStyles.trenQuoteText}
         >
-          {quoteArr[randomQuote].author}
+          {quoteArr[randomQuote].author[lang]}
         </Text>
       </View>
     </View>
