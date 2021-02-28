@@ -71,5 +71,10 @@ export const commonStyles = StyleSheet.create({
   trenQuoteText: {
     color: 'gray',
     fontSize: 12
+  },
+  treningModeScreen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
