@@ -17,7 +17,6 @@ export function Stats() {
     >
       <Text 
         style={{
-          ...commonStyles.infoText,
           color: getTextColorWithTheme(theme)
         }}
       >

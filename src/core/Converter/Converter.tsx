@@ -15,7 +15,6 @@ export function Converter() {
     }}>
       <Text 
         style={{
-          ...commonStyles.infoText,
           color: getTextColorWithTheme(theme)
         }}
       >

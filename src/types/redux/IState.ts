@@ -1,5 +1,9 @@
 interface IState {
-  localization: ILanguage
+  localization: ILanguage,
+  currency1: ICurrency,
+  currency2: ICurrency
 }
 
-type ILanguage = 'rus' | 'eng'
+type ILanguage = 'rus' | 'eng';
+
+type ICurrency = string
