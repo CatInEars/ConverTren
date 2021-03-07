@@ -82,5 +82,18 @@ export const commonStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  currencyItemContainer: {
+    backgroundColor: 'white',
+    paddingHorizontal: 28,
+    paddingVertical: 18,
+  },
+  currencyItemTextChar: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 16
+  },
+  currencyItemTextName: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 13
   }
 });

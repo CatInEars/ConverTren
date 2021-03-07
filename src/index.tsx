@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator, StatusBar } from 'react-native';
-import { MainAppNavigation } from './navigation/mainParts/MainAppNavigation';
+import { MainStackNavigation } from './navigation/mainParts/MainStackNavigation';
 import { useFonts } from 'expo-font'
+import { connect } from 'react-redux';
 
-export function Main() {
+interface IProps {
+  onCurrencyLoad: any
+}
+
+function main({ onCurrencyLoad }: IProps) {
   const [currencyLoaded, setCurrencyLoaded] = useState(false);
-  const [currencyData, setCurrencyData] = useState({});
   const [Fontloaded] = useFonts({
     'OpenSans-Regular': require('../assets/fonts/OpenSans-Regular.ttf'),
     'OpenSans-Italic': require('../assets/fonts/OpenSans-Italic.ttf'),
@@ -16,8 +20,14 @@ export function Main() {
   useEffect(() => {
     fetch('https://www.cbr-xml-daily.ru/daily_json.js')
       .then( resolve => resolve.json() )
-      .then( json => setCurrencyData(json.Valute))
-      .catch( error => new Error(error) )
+      .then( json => {
+        const currencyArr = [];
+        for (let key in json.Valute) {
+          currencyArr.push(json.Valute[key]);
+        }
+        onCurrencyLoad(currencyArr);
+      })
+      .catch( error => console.log(error) )
       .finally( () => setCurrencyLoaded(true) );
   }, []);
   
@@ -27,7 +37,7 @@ export function Main() {
       ?
       <>
         <NavigationContainer>
-          <MainAppNavigation />
+          <MainStackNavigation />
         </NavigationContainer>
         <StatusBar barStyle="light-content" />
       </>
@@ -36,3 +46,10 @@ export function Main() {
     }</>
   );
 }
+
+export const Main = connect(
+  (state: IState) => ({}),
+  (dispatch: Dispatch<ICurrencyLoad>): IProps => ({
+    onCurrencyLoad: (data: any) => dispatch({type: 'CURRENCY_LOADED', currency: data})
+  })
+)(main);

@@ -6,6 +6,11 @@ export function rootReducer(state = initialState, action: IAction): IState {
       ...state,
       localization: action.languageSet
     }
+  } else if (action.type === 'CURRENCY_LOADED' ) {
+    return {
+      ...state,
+      currencyList: action.currency
+    }
   }
 
   return state;

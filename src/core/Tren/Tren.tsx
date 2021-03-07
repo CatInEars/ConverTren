@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useState } from 'react';
+import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { localization } from '../../modules/localization/localization';
@@ -14,7 +15,14 @@ interface IProps {
 }
 
 function tren({ lang }: IProps) {
+  const [ modalVisibly, setModalVisibly ] = useState(false);
+
   const { theme } = useContext(ThemeContext);
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('CurrencySelectModal');
+  }
 
   return (
     <View 
@@ -33,6 +41,11 @@ function tren({ lang }: IProps) {
           ConverTren
         </Text>
       </View>
+
+      <Button
+        title="Open modal"
+        onPress={handlePress}
+      />
       
       <View style={commonStyles.trenStatsTextContainer}>
         <Text
