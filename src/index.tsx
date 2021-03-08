@@ -48,7 +48,7 @@ function main({ onCurrencyLoad }: IProps) {
 }
 
 export const Main = connect(
-  (state: IState) => ({}),
+  () => ({}),
   (dispatch: Dispatch<ICurrencyLoad>): IProps => ({
     onCurrencyLoad: (data: any) => dispatch({type: 'CURRENCY_LOADED', currency: data})
   })

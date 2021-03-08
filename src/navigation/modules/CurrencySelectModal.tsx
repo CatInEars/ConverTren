@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { needValute } from '../../modules/needValute';
+import { commonStyles } from '../../common/commonStyles';
+import { needValute } from '../../modules/currency/needValute';
 import { CurrencyItem } from './CurrencyItem';
 
 interface IProps {
@@ -11,17 +11,14 @@ interface IProps {
 
 function currencySelectModal({ currencyList }: IProps) {
   return (
-    <View style={{flex: 1, backgroundColor: 'skyblue'}}>
-      <FlatList
-        data={currencyList}
-        renderItem={({item}) => {
-
+    <View style={commonStyles.currencyModalContainer}>
+      {
+        currencyList.map( item => {
           if (needValute.indexOf(item.CharCode) === -1) return null
-          return <CurrencyItem {...item} />
-
-        }}
-        keyExtractor={ (item: any) => item.CharCode}
-      />
+          console.log(item.CharCode)
+          return <CurrencyItem {...item} key={item.CharCode}/>
+        })
+      }
     </View>
   );
 }

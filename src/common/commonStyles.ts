@@ -83,10 +83,16 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  currencyModalContainer: {
+    flex: 1,
+    backgroundColor: 'white'
+  },
   currencyItemContainer: {
     backgroundColor: 'white',
     paddingHorizontal: 28,
     paddingVertical: 18,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   currencyItemTextChar: {
     fontFamily: 'OpenSans-Regular',
@@ -95,5 +101,12 @@ export const commonStyles = StyleSheet.create({
   currencyItemTextName: {
     fontFamily: 'OpenSans-Regular',
     fontSize: 13
+  },
+  currencyIconContainer: {
+    width: 30, 
+    height: 30,
+    borderRadius: 100, 
+    overflow: 'hidden',
+    marginRight: 16
   }
 });
