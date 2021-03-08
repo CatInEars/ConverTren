@@ -84,11 +84,9 @@ export const commonStyles = StyleSheet.create({
     alignItems: 'center'
   },
   currencyModalContainer: {
-    flex: 1,
-    backgroundColor: 'white'
+    flex: 1
   },
   currencyItemContainer: {
-    backgroundColor: 'white',
     paddingHorizontal: 28,
     paddingVertical: 18,
     flexDirection: 'row',

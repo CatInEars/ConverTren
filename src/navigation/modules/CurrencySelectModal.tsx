@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { needValute } from '../../modules/currency/needValute';
+import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
+import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { CurrencyItem } from './CurrencyItem';
 
 interface IProps {
@@ -10,8 +12,14 @@ interface IProps {
 }
 
 function currencySelectModal({ currencyList }: IProps) {
+  const { theme } = useContext(ThemeContext)
   return (
-    <View style={commonStyles.currencyModalContainer}>
+    <View 
+      style={{
+        ...commonStyles.currencyModalContainer,
+        backgroundColor: getBGCWithTheme(theme)
+      }}
+    >
       {
         currencyList.map( item => {
           if (needValute.indexOf(item.CharCode) === -1) return null
