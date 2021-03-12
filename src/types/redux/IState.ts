@@ -16,5 +16,5 @@ interface ICurrencyItem {
   Nominal: number,
   NumCode: string,
   Previous: number,
-  Value: number,
+  Value: number
 }

@@ -6,11 +6,19 @@ export function rootReducer(state = initialState, action: IAction): IState {
       ...state,
       localization: action.languageSet
     }
-  } else if (action.type === 'CURRENCY_LOADED' ) {
+  } else if (action.type === 'CURRENCY_LOADED') {
     return {
       ...state,
       currencyList: action.currency
     }
+  } else if (action.type === 'CURRENCY_SET') {
+    const newState: any = {
+      ...state
+    }
+
+    newState[`currency${action.payload.currencyListNumber}`] = action.payload.newCurrency;
+
+    return newState
   }
 
   return state;

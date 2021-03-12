@@ -4,6 +4,7 @@ import { ActivityIndicator, StatusBar } from 'react-native';
 import { MainStackNavigation } from './navigation/mainParts/MainStackNavigation';
 import { useFonts } from 'expo-font'
 import { connect } from 'react-redux';
+import { getCurrencyArr } from './modules/currency/getCurrencyArr';
 
 interface IProps {
   onCurrencyLoad: any
@@ -21,10 +22,8 @@ function main({ onCurrencyLoad }: IProps) {
     fetch('https://www.cbr-xml-daily.ru/daily_json.js')
       .then( resolve => resolve.json() )
       .then( json => {
-        const currencyArr = [];
-        for (let key in json.Valute) {
-          currencyArr.push(json.Valute[key]);
-        }
+        const currencyArr = getCurrencyArr(json);
+        
         onCurrencyLoad(currencyArr);
       })
       .catch( error => console.log(error) )

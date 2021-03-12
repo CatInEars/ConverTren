@@ -20,12 +20,12 @@ function tren({ lang }: IProps) {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation();
 
-  const handlePress = () => {
-    navigation.navigate('CurrencySelectModal');
+  const handlePress = (currencyListNumber: number) => {
+    navigation.navigate('CurrencySelectModal', { currencyListNumber });
   }
 
   return (
-    <View 
+    <View
       style={{
         ...commonStyles.trenScreenContainer,
         backgroundColor: getBGCWithTheme(theme)
@@ -43,8 +43,13 @@ function tren({ lang }: IProps) {
       </View>
 
       <Button
-        title="Open modal"
-        onPress={handlePress}
+        title="Open modal 1"
+        onPress={() => handlePress(1)}
+      />
+
+      <Button
+        title="Open modal 2"
+        onPress={() => handlePress(2)}
       />
       
       <View style={commonStyles.trenStatsTextContainer}>

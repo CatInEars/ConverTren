@@ -10,7 +10,7 @@ export const commonStyles = StyleSheet.create({
   },
   tabNavigatorContainer: {
     borderTopColor: 'gray',
-    borderTopWidth: 2,
+    borderTopWidth: 1,
     borderStyle: 'solid',
     width: '100%',
     height: 70,
@@ -26,10 +26,12 @@ export const commonStyles = StyleSheet.create({
   },
   stackHeader: {
     width: '100%', 
-    height: 70,
+    height: 55,
     borderBottomColor: 'gray',
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderStyle: 'solid',
+    justifyContent: 'center',
+    paddingHorizontal: 20
   },
   stackHeaderTitle: {
     fontSize: 24,
@@ -106,5 +108,14 @@ export const commonStyles = StyleSheet.create({
     borderRadius: 100, 
     overflow: 'hidden',
     marginRight: 16
+  },
+  currencyModalTitleContainer: {
+    justifyContent: 'center',
+    paddingHorizontal: 28,
+    paddingVertical: 12
+  },
+  currencyModalTitleText: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 20
   }
 });

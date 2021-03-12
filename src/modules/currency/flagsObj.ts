@@ -5,6 +5,7 @@ import { USD } from "../../core/svgs/Flags/USD";
 import { CHF } from "../../core/svgs/Flags/CHF";
 import { JPY } from "../../core/svgs/Flags/JPY";
 import { UAH } from "../../core/svgs/Flags/UAH";
+import { RUB } from "../../core/svgs/Flags/RUB";
 
 export const flagsObj: any = {
   GBP,
@@ -13,5 +14,6 @@ export const flagsObj: any = {
   USD,
   CHF,
   UAH,
-  JPY
+  JPY,
+  RUB
 }

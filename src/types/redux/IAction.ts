@@ -1,4 +1,4 @@
-type IAction = ILanguageAction | ICurrencyLoad;
+type IAction = ILanguageAction | ICurrencyLoad | ISetCurrency;
 
 interface ILanguageAction {
   type: 'CHANGE_LOCALIZATION',
@@ -8,4 +8,12 @@ interface ILanguageAction {
 interface ICurrencyLoad {
   type: 'CURRENCY_LOADED',
   currency: any
+}
+
+interface ISetCurrency {
+  type: 'CURRENCY_SET',
+  payload: {
+    newCurrency: ICurrency,
+    currencyListNumber: number
+  }
 }

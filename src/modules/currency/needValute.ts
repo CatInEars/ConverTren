@@ -1,9 +1,10 @@
 export const needValute = [
   'USD',
   'EUR',
+  'UAH',
   'CNY',
-  'CHF',
   'GBP',
+  'CHF',
   'JPY',
-  'UAH'
 ]
+// RUB is default
