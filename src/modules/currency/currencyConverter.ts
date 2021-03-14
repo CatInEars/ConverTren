@@ -14,5 +14,5 @@ export function currencyConverter({
     if (item.CharCode === outputCurrency) outputCurrencyValue = item.Value;
   });
 
-  return Math.floor((inputCurrencyValue/outputCurrencyValue) * count);
+  return +((inputCurrencyValue/outputCurrencyValue) * count).toFixed(2);
 }

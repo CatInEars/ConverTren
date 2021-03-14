@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
-import { getRandom } from '../../modules/getRandom';
+import { getRandom } from '../../modules/random/getRandom';
 import { quoteArr } from '../../modules/quoteArr';
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
 
 export function Quote({ lang }: IProps) {
   const [randomQuote, setRandomQuote] = useState(
-    getRandom(0, quoteArr.length)
+    getRandom(0, quoteArr.length - 1)
   );
 
   return (

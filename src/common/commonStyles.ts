@@ -117,5 +117,12 @@ export const commonStyles = StyleSheet.create({
   currencyModalTitleText: {
     fontFamily: 'OpenSans-Regular',
     fontSize: 20
+  },
+  treningScreenInput: {
+    width: '80%',
+    height: 40,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'black'
   }
 });
