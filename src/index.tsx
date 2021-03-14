@@ -21,11 +21,7 @@ function main({ onCurrencyLoad }: IProps) {
   useEffect(() => {
     fetch('https://www.cbr-xml-daily.ru/daily_json.js')
       .then( resolve => resolve.json() )
-      .then( json => {
-        const currencyArr = getCurrencyArr(json);
-        
-        onCurrencyLoad(currencyArr);
-      })
+      .then( json => onCurrencyLoad(getCurrencyArr(json)))
       .catch( error => console.log(error) )
       .finally( () => setCurrencyLoaded(true) );
   }, []);
