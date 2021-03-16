@@ -9,3 +9,6 @@ export const LIGHT_ICON_COLOR = 'black';
 
 export const LIGHT_TEXT_COLOR = 'black';
 export const DARK_TEXT_COLOR = 'white';
+
+export const LIGHT_INPUT_COLOR = 'black';
+export const DARK_INPUT_COLOR = 'lightgray';

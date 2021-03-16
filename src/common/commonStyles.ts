@@ -118,11 +118,13 @@ export const commonStyles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
     fontSize: 20
   },
+  treningModeCountText: {
+    fontSize: 24
+  },
   treningScreenInput: {
-    width: '80%',
-    height: 40,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'black'
+    width: '100%',
+    height: 60,
+    paddingHorizontal: 12,
+    marginTop: 24
   }
 });
