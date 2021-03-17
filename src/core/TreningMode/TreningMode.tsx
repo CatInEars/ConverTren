@@ -21,27 +21,43 @@ function treningMode({ currencyData, currencys }: IProps) {
   const [answerValue, setAnswerValue] = useState('');
   const [count, setCount] = useState(getRandomWithStep(10, 3000, 10));
   const [inputCurrency, setInputCurrency] = useState(getRandom(1, 2));
-  const outputCurrency = currencys[`currency${Math.abs(inputCurrency-3)}`];
-  const data: IConvertArgs = {
+  const [data, setData] = useState<IConvertArgs>({
     inputCurrency: {
       currency: currencys[`currency${inputCurrency}`],
       count
     },
-    outputCurrency,
+    outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
     currencyData
-  }
+  })
   const [trueAsw, setTrueAsw] = useState(currencyConverter(data));
   const [isAnswered, setIsAnwsered] = useState('');
   const [page, setPage] = useState(0);
   
   const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
+  function nextPage() {
     setCount(getRandomWithStep(10, 3000, 10));
     setInputCurrency(getRandom(1, 2));
+    setPage(page + 1);
+  }
+
+  useEffect(() => {
+    setData({
+      inputCurrency: {
+        currency: currencys[`currency${inputCurrency}`],
+        count
+      },
+      outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
+      currencyData
+    });
+    setAnswerValue('');
     setIsAnwsered('');
-    setAnswerValue('')
-  }, [page])
+  }, [page]);
+
+  useEffect(() => {
+    setTrueAsw(currencyConverter(data));
+  }, [data])
+
 
 
   const handleChange = (newValue: string): void => {
@@ -56,10 +72,6 @@ function treningMode({ currencyData, currencys }: IProps) {
       return setIsAnwsered('< 5')
     }
     setIsAnwsered(Math.round(procent).toString());
-  }
-
-  const handlePressNextPage = () => {
-    setPage(page + 1);
   }
 
   return (
@@ -83,17 +95,20 @@ function treningMode({ currencyData, currencys }: IProps) {
         onChangeText={handleChange}
         style={{
           ...commonStyles.treningScreenInput,
-          backgroundColor: getBGCInputWithTheme(theme)
+          backgroundColor: getBGCInputWithTheme(theme),
+          color: getTextColorWithTheme(theme)
         }}
         keyboardType="number-pad"
         onSubmitEditing={handlePress}
-        placeholder={`Введите ответ в ${currencySymbolObj[outputCurrency]}`}
+        placeholder={`Введите ответ в ${currencySymbolObj[data.outputCurrency]}`}
         placeholderTextColor={getTextColorWithTheme(theme)}
       />
 
+      <Text>{trueAsw}</Text>
+
       <Button 
         title="NEXT PAGE"
-        onPress={handlePressNextPage}
+        onPress={nextPage}
       />
 
       {
