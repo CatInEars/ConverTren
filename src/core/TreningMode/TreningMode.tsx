@@ -11,13 +11,16 @@ import { getRandom } from '../../modules/random/getRandom';
 import { TextInput } from 'react-native-gesture-handler';
 import { getBGCInputWithTheme } from '../../modules/theme/getBGCInputWithTheme';
 import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
+import { EndScreen } from './EndScreen';
+import { localization } from '../../modules/localization/localization';
 
 interface IProps {
   currencyData: ICurrencyItem[],
-  currencys: any
+  currencys: any,
+  lang: ILanguage
 }
 
-function treningMode({ currencyData, currencys }: IProps) {
+function treningMode({ currencyData, currencys, lang }: IProps) {
   const [answerValue, setAnswerValue] = useState('');
   const [count, setCount] = useState(getRandomWithStep(10, 3000, 10));
   const [inputCurrency, setInputCurrency] = useState(getRandom(1, 2));
@@ -58,8 +61,6 @@ function treningMode({ currencyData, currencys }: IProps) {
     setTrueAsw(currencyConverter(data));
   }, [data])
 
-
-
   const handleChange = (newValue: string): void => {
     const last = newValue[newValue.length - 1];
     if (last === '.' || last === ',' || last === ' ' || last === '-') return
@@ -81,39 +82,46 @@ function treningMode({ currencyData, currencys }: IProps) {
         backgroundColor: getBGCWithTheme(theme)
       }}
     >
-      <Text
-        style={{
-          color: getTextColorWithTheme(theme),
-          ...commonStyles.treningModeCountText
-        }}
-      >
-        {`${count} ${currencySymbolObj[data.inputCurrency.currency]}`}
-      </Text>
-
-      <TextInput 
-        value={answerValue}
-        onChangeText={handleChange}
-        style={{
-          ...commonStyles.treningScreenInput,
-          backgroundColor: getBGCInputWithTheme(theme),
-          color: getTextColorWithTheme(theme)
-        }}
-        keyboardType="number-pad"
-        onSubmitEditing={handlePress}
-        placeholder={`Введите ответ в ${currencySymbolObj[data.outputCurrency]}`}
-        placeholderTextColor={getTextColorWithTheme(theme)}
-      />
-
-      <Text>{trueAsw}</Text>
-
-      <Button 
-        title="NEXT PAGE"
-        onPress={nextPage}
-      />
-
       {
-        !!isAnswered &&
-        <Text>{`${isAnswered}%`}</Text>
+        page < 10 ?
+          <>
+            <Text
+              style={{
+                color: getTextColorWithTheme(theme),
+                ...commonStyles.treningModeCountText
+              }}
+            >
+              {`${count} ${currencySymbolObj[data.inputCurrency.currency]}`}
+            </Text>
+
+            <TextInput 
+              value={answerValue}
+              onChangeText={handleChange}
+              style={{
+                ...commonStyles.treningScreenInput,
+                backgroundColor: getBGCInputWithTheme(theme),
+                color: getTextColorWithTheme(theme)
+              }}
+              keyboardType="number-pad"
+              onSubmitEditing={handlePress}
+              placeholder={
+                `${localization.treningMode.inputPlaceholder[lang]} ${currencySymbolObj[data.outputCurrency]}`
+              }
+              placeholderTextColor={getTextColorWithTheme(theme)}
+            />
+
+            {
+              !!isAnswered &&
+              <Text>{`${isAnswered}%`}</Text>
+            }
+
+            <Button 
+              title="NEXT PAGE"
+              onPress={nextPage}
+            />
+          </>
+        :
+          <EndScreen />
       }
     </View>
   );
@@ -124,7 +132,8 @@ export const TreningMode = connect(
     currencyData: state.currencyList,
     currencys: {
       currency1: state.currency1,
-      currency2: state.currency2
-    }
+      currency2: state.currency2,
+    },
+    lang: state.localization
   })
 )(treningMode);

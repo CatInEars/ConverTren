@@ -78,5 +78,11 @@ export const localization: any = {
         eng: 'Ruble'
       }
     }
+  },
+  treningMode: {
+    inputPlaceholder: {
+      rus: 'Введите ответ в',
+      eng: 'Enter answer on'
+    }
   }
 }
