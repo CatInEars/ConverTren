@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { CheckMark } from '../../core/svgs/Flags/CheckMark';
-import { flagsObj } from '../../modules/currency/flagsObj';
+import { flagsObjCircle } from '../../modules/currency/flagsObjCircle';
 import { localization } from '../../modules/localization/localization';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
@@ -24,7 +24,7 @@ function currencyItem({
   selectCurrency,
   onChangeCurrency
 }: IProps) {
-  const Icon = flagsObj[item.CharCode];
+  const Icon = flagsObjCircle[item.CharCode];
   const { theme } = useContext(ThemeContext);
   
   function handlePress(newCurrency: ICurrency) {

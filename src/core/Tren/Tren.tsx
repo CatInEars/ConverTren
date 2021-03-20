@@ -7,6 +7,7 @@ import { localization } from '../../modules/localization/localization';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { CurrencySelector } from './CurrencySelector';
 import { Quote } from './Quote';
 import { StartButton } from './StartButton';
 
@@ -15,8 +16,6 @@ interface IProps {
 }
 
 function tren({ lang }: IProps) {
-  const [ modalVisibly, setModalVisibly ] = useState(false);
-
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation();
 
@@ -42,14 +41,8 @@ function tren({ lang }: IProps) {
         </Text>
       </View>
 
-      <Button
-        title="Open modal 1"
-        onPress={() => handlePress(1)}
-      />
-
-      <Button
-        title="Open modal 2"
-        onPress={() => handlePress(2)}
+      <CurrencySelector
+        handleOpenCurrencyList={handlePress}
       />
       
       <View style={commonStyles.trenStatsTextContainer}>

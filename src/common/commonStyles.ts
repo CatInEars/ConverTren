@@ -126,5 +126,17 @@ export const commonStyles = StyleSheet.create({
     height: 60,
     paddingHorizontal: 12,
     marginTop: 24
+  },
+  trenScreenCurrencyButtonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  trenScreenCurrencyButton: {
+    width: 55, 
+    height: 40
+  },
+  trenScreenConvertIcon: {
+    width: 25,
+    height: 20
   }
 });
