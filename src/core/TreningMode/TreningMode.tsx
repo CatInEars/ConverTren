@@ -17,15 +17,13 @@ import { localization } from '../../modules/localization/localization';
 interface IProps {
   currencyData: ICurrencyItem[],
   currencys: any,
-  lang: ILanguage,
-  sendProcent: (procentArr: number[]) => void
+  lang: ILanguage
 }
 
 function treningMode({ 
   currencyData, 
   currencys, 
-  lang,
-  sendProcent
+  lang
 }: IProps) {
   const [answerValue, setAnswerValue] = useState('');
   const [count, setCount] = useState(getRandomWithStep(10, 3000, 10));
@@ -62,10 +60,6 @@ function treningMode({
     });
     setAnswerValue('');
     setIsAnwsered('');
-    if (page == 3) {
-      console.log('send', procentArr);
-      sendProcent(procentArr)
-    }
   }, [page]);
 
   useEffect(() => {
@@ -159,10 +153,5 @@ export const TreningMode = connect(
       currency2: state.currency2,
     },
     lang: state.localization
-  }),
-  (dispatch: Dispatch<IAction>) => ({
-    sendProcent: (procents: number[]) => {
-      dispatch({type: 'SEND_PROCENT', procents})
-    }
   })
 )(treningMode);

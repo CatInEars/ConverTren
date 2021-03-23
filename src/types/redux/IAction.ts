@@ -20,5 +20,5 @@ interface ISetCurrency {
 
 interface ISendProcent {
   type: 'SEND_PROCENT',
-  procents: number[]
+  procent: number
 }

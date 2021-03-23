@@ -24,7 +24,7 @@ export function rootReducer(state = initialState, action: IAction): IState {
       ...state,
       statsAsw: [
         ...state.statsAsw,
-        ...action.procents
+        action.procent
       ]
     }
   }
