@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { localization } from '../../modules/localization/localization';

@@ -19,6 +19,14 @@ export function rootReducer(state = initialState, action: IAction): IState {
     newState[`currency${action.payload.currencyListNumber}`] = action.payload.newCurrency;
 
     return newState
+  } else if (action.type === 'SEND_PROCENT') {
+    return {
+      ...state,
+      statsAsw: [
+        ...state.statsAsw,
+        ...action.procents
+      ]
+    }
   }
 
   return state;

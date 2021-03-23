@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Dispatch, useContext, useEffect, useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
@@ -17,10 +17,16 @@ import { localization } from '../../modules/localization/localization';
 interface IProps {
   currencyData: ICurrencyItem[],
   currencys: any,
-  lang: ILanguage
+  lang: ILanguage,
+  sendProcent: (procentArr: number[]) => void
 }
 
-function treningMode({ currencyData, currencys, lang }: IProps) {
+function treningMode({ 
+  currencyData, 
+  currencys, 
+  lang,
+  sendProcent
+}: IProps) {
   const [answerValue, setAnswerValue] = useState('');
   const [count, setCount] = useState(getRandomWithStep(10, 3000, 10));
   const [inputCurrency, setInputCurrency] = useState(getRandom(1, 2));
@@ -35,6 +41,7 @@ function treningMode({ currencyData, currencys, lang }: IProps) {
   const [trueAsw, setTrueAsw] = useState(currencyConverter(data));
   const [isAnswered, setIsAnwsered] = useState('');
   const [page, setPage] = useState(0);
+  const [procentArr, setProcentArr] = useState<number[]>([]);
   
   const { theme } = useContext(ThemeContext);
 
@@ -55,6 +62,10 @@ function treningMode({ currencyData, currencys, lang }: IProps) {
     });
     setAnswerValue('');
     setIsAnwsered('');
+    if (page == 3) {
+      console.log('send', procentArr);
+      sendProcent(procentArr)
+    }
   }, [page]);
 
   useEffect(() => {
@@ -67,12 +78,14 @@ function treningMode({ currencyData, currencys, lang }: IProps) {
     setAnswerValue(newValue)
   }
 
-  const handlePress = (): void => {
+  const handleSubmit = (): void => {
     const procent = 100 - Math.abs( (+answerValue / trueAsw) - 1) * 100;
     if (procent < 5) {
+      setProcentArr([...procentArr, procent]);
       return setIsAnwsered('< 5')
     }
     setIsAnwsered(Math.round(procent).toString());
+    setProcentArr([...procentArr, procent]);
   }
 
   return (
@@ -83,7 +96,7 @@ function treningMode({ currencyData, currencys, lang }: IProps) {
       }}
     >
       {
-        page < 10 ?
+        page < 3 ?
           <>
             <Text
               style={{
@@ -103,37 +116,53 @@ function treningMode({ currencyData, currencys, lang }: IProps) {
                 color: getTextColorWithTheme(theme)
               }}
               keyboardType="number-pad"
-              onSubmitEditing={handlePress}
+              onSubmitEditing={handleSubmit}
               placeholder={
                 `${localization.treningMode.inputPlaceholder[lang]} ${currencySymbolObj[data.outputCurrency]}`
               }
               placeholderTextColor={getTextColorWithTheme(theme)}
+              editable={!isAnswered}
             />
 
             {
               !!isAnswered &&
-              <Text>{`${isAnswered}%`}</Text>
+              <>
+                <Text>{`${isAnswered}%`}</Text>
+                <Button 
+                  title="NEXT PAGE"
+                  onPress={nextPage}
+                />
+              </>
             }
 
-            <Button 
-              title="NEXT PAGE"
-              onPress={nextPage}
-            />
+            {
+              !!answerValue &&
+              <Button
+                title='SELECT'
+                onPress={handleSubmit}
+                disabled={!!isAnswered}
+              />
+            }
           </>
         :
-          <EndScreen />
+          <EndScreen procentArr={procentArr} />
       }
     </View>
   );
 }
 
 export const TreningMode = connect(
-  (state: IState): IProps => ({
+  (state: IState) => ({
     currencyData: state.currencyList,
     currencys: {
       currency1: state.currency1,
       currency2: state.currency2,
     },
     lang: state.localization
+  }),
+  (dispatch: Dispatch<IAction>) => ({
+    sendProcent: (procents: number[]) => {
+      dispatch({type: 'SEND_PROCENT', procents})
+    }
   })
 )(treningMode);

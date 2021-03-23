@@ -2,7 +2,8 @@ interface IState {
   localization: ILanguage,
   currency1: ICurrency,
   currency2: ICurrency,
-  currencyList: ICurrencyItem[]
+  currencyList: ICurrencyItem[],
+  statsAsw: number[]
 }
 
 type ILanguage = 'rus' | 'eng';

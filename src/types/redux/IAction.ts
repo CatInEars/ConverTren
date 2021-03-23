@@ -1,4 +1,4 @@
-type IAction = ILanguageAction | ICurrencyLoad | ISetCurrency;
+type IAction = ILanguageAction | ICurrencyLoad | ISetCurrency | ISendProcent;
 
 interface ILanguageAction {
   type: 'CHANGE_LOCALIZATION',
@@ -16,4 +16,9 @@ interface ISetCurrency {
     newCurrency: ICurrency,
     currencyListNumber: number
   }
+}
+
+interface ISendProcent {
+  type: 'SEND_PROCENT',
+  procents: number[]
 }
