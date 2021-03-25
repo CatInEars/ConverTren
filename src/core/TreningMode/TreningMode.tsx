@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Button, Alert } from 'react-native';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { View, Text, Button, Alert, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
@@ -14,6 +14,7 @@ import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
 import { EndScreen } from './EndScreen';
 import { localization } from '../../modules/localization/localization';
 import { useNavigation } from '@react-navigation/core';
+import { screenWidth } from '../../common/commonStyles';
 
 interface IProps {
   currencyData: ICurrencyItem[],
@@ -36,52 +37,15 @@ function treningMode({
     },
     outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
     currencyData
-  })
+  });
   const [trueAsw, setTrueAsw] = useState(currencyConverter(data));
   const [isAnswered, setIsAnwsered] = useState('');
   const [page, setPage] = useState(0);
   const [procentArr, setProcentArr] = useState<number[]>([]);
+  const timerValue = useRef(new Animated.Value(0)).current;
+  const [timerDo, setTimerDo] = useState(true);
   
   const { theme } = useContext(ThemeContext);
-
-  function nextPage() {
-    setCount(getRandomWithStep(10, 3000, 10));
-    setInputCurrency(getRandom(1, 2));
-    setPage(page + 1);
-  }
-
-  useEffect(() => {
-    setData({
-      inputCurrency: {
-        currency: currencys[`currency${inputCurrency}`],
-        count
-      },
-      outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
-      currencyData
-    });
-    setAnswerValue('');
-    setIsAnwsered('');
-  }, [page]);
-
-  useEffect(() => {
-    setTrueAsw(currencyConverter(data));
-  }, [data])
-
-  const handleChange = (newValue: string): void => {
-    const last = newValue[newValue.length - 1];
-    if (last === '.' || last === ',' || last === ' ' || last === '-') return
-    setAnswerValue(newValue)
-  }
-
-  const handleSubmit = (): void => {
-    const procent = 100 - Math.abs( (+answerValue / trueAsw) - 1) * 100;
-    if (procent < 5) {
-      setProcentArr([...procentArr, procent]);
-      return setIsAnwsered('< 5')
-    }
-    setIsAnwsered(Math.round(procent).toString());
-    setProcentArr([...procentArr, procent]);
-  }
 
   const navigation = useNavigation();
 
@@ -96,7 +60,7 @@ function treningMode({
           { 
             text: localization.treningMode.alertCancelButton[lang], 
             style: 'cancel', 
-            onPress: () => {} 
+            onPress: () => {}
           },
           {
             text: localization.treningMode.alertOkButton[lang],
@@ -107,6 +71,64 @@ function treningMode({
       );
     });
   }, []);
+
+  useEffect(() => {
+    if (!timerDo) {
+      Animated.timing(timerValue, {
+        toValue: 1,
+        duration: 9000,
+        useNativeDriver: true
+      }).stop();
+    } else {
+      timerValue.setValue(0);
+      Animated.timing(timerValue, {
+        toValue: 1,
+        duration: 9000,
+        useNativeDriver: true
+      }).start();
+    }
+  }, [timerDo]);
+
+  useEffect(() => {
+    setData({
+      inputCurrency: {
+        currency: currencys[`currency${inputCurrency}`],
+        count
+      },
+      outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
+      currencyData
+    });
+    setAnswerValue('');
+    setIsAnwsered('');
+    setTimerDo(true);
+  }, [page]);
+
+  useEffect(() => {
+    setTrueAsw(currencyConverter(data));
+  }, [data])
+
+  const handleChange = (newValue: string): void => {
+    const last = newValue[newValue.length - 1];
+    if (last === '.' || last === ',' || last === ' ' || last === '-') return
+    setAnswerValue(newValue)
+  }
+
+  const handleSubmit = (): void => {
+    const procent = 100 - Math.abs( (+answerValue / trueAsw) - 1) * 100;
+    setTimerDo(false);
+    if (procent < 5) {
+      setProcentArr([...procentArr, 0]);
+      return setIsAnwsered('< 5');
+    }
+    setIsAnwsered(Math.round(procent).toString());
+    setProcentArr([...procentArr, procent]);
+  }
+
+  const nextPage = () => {
+    setCount(getRandomWithStep(10, 3000, 10));
+    setInputCurrency(getRandom(1, 2));
+    setPage(page + 1);
+  }
 
   return (
     <View
@@ -163,6 +185,22 @@ function treningMode({
                 disabled={!!isAnswered}
               />
             }
+
+            <Animated.View
+              style={
+                {
+                  transform: [{ 
+                    translateX: timerValue.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, -screenWidth]
+                    }) 
+                  }],
+                  width: '100%',
+                  height: 10, 
+                  backgroundColor: 'orange',
+                }
+              }
+            />
           </>
         :
           <EndScreen procentArr={procentArr} />

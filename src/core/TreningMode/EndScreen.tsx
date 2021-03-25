@@ -23,6 +23,8 @@ function endScreen({
     res /= procentArr.length;
     sendProcent(average);
     setAverage(res);
+
+    navigation.removeListener('beforeRemove', () => {});
   }, [])
 
   return (

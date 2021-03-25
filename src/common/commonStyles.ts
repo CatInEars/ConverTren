@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { width: screenWidth } = Dimensions.get('window');
+export const { width: screenWidth } = Dimensions.get('window');
 
 export const commonStyles = StyleSheet.create({
   _center: {
