@@ -83,6 +83,22 @@ export const localization: any = {
     inputPlaceholder: {
       rus: 'Введите ответ в',
       eng: 'Enter answer on'
+    },
+    alertTitle: {
+      rus: 'Уже всё?',
+      eng: 'Is that all?'
+    },
+    alertText: {
+      rus: 'Если вы выйдете, то прогресс урока пропадет, вы уверены, что хотите выйти?',
+      eng: 'If you exit, the lesson progress will be lost, are you sure you want to exit?'
+    },
+    alertOkButton: {
+      rus: 'Уйти',
+      eng: 'Leave'
+    },
+    alertCancelButton: {
+      rus: 'Остаться',
+      eng: 'Stay'
     }
   }
 }

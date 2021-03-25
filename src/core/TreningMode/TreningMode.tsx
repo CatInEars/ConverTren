@@ -83,6 +83,31 @@ function treningMode({
     setProcentArr([...procentArr, procent]);
   }
 
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+
+      Alert.alert(
+        localization.treningMode.alertTitle[lang],
+        localization.treningMode.alertText[lang],
+        [
+          { 
+            text: localization.treningMode.alertCancelButton[lang], 
+            style: 'cancel', 
+            onPress: () => {} 
+          },
+          {
+            text: localization.treningMode.alertOkButton[lang],
+            style: 'destructive',
+            onPress: () => navigation.dispatch(e.data.action),
+          },
+        ]
+      );
+    });
+  }, []);
+
   return (
     <View
       style={{
