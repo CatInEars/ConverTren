@@ -1,5 +1,5 @@
-import React, { Dispatch, useContext, useEffect, useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, Button, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
@@ -13,6 +13,7 @@ import { getBGCInputWithTheme } from '../../modules/theme/getBGCInputWithTheme';
 import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
 import { EndScreen } from './EndScreen';
 import { localization } from '../../modules/localization/localization';
+import { useNavigation } from '@react-navigation/core';
 
 interface IProps {
   currencyData: ICurrencyItem[],
