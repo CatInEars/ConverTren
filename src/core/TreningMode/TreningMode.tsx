@@ -52,6 +52,7 @@ function treningMode({
   useEffect(() => {
     navigation.addListener('beforeRemove', (e) => {
       e.preventDefault();
+      setTimerDo(false);
 
       Alert.alert(
         localization.treningMode.alertTitle[lang],
@@ -60,7 +61,7 @@ function treningMode({
           { 
             text: localization.treningMode.alertCancelButton[lang], 
             style: 'cancel', 
-            onPress: () => {}
+            onPress: () => setTimerDo(true)
           },
           {
             text: localization.treningMode.alertOkButton[lang],
@@ -84,10 +85,10 @@ function treningMode({
       Animated.timing(timerValue, {
         toValue: 1,
         duration: 9000,
-        useNativeDriver: true
+        useNativeDriver: false
       }).start();
     }
-  }, [timerDo]);
+  }, [timerDo, page]);
 
   useEffect(() => {
     setData({
