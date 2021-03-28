@@ -15,6 +15,7 @@ import { EndScreen } from './EndScreen';
 import { localization } from '../../modules/localization/localization';
 import { useNavigation } from '@react-navigation/core';
 import { screenWidth } from '../../common/commonStyles';
+import { TIMER_DURATION } from '../../common/timer_duration';
 
 interface IProps {
   currencyData: ICurrencyItem[],
@@ -44,6 +45,7 @@ function treningMode({
   const [procentArr, setProcentArr] = useState<number[]>([]);
   const timerValue = useRef(new Animated.Value(0)).current;
   const [timerDo, setTimerDo] = useState(true);
+  const [timeIsOut, setTimeIsOut] = useState(false);
   
   const { theme } = useContext(ThemeContext);
 
@@ -71,26 +73,17 @@ function treningMode({
         ]
       );
     });
+
+    return function() {
+      timerValue.setValue(0);
+      setAnswerValue('');
+      setIsAnwsered('');
+      setTimerDo(true);
+    }
   }, []);
 
   useEffect(() => {
-    if (!timerDo) {
-      Animated.timing(timerValue, {
-        toValue: 1,
-        duration: 9000,
-        useNativeDriver: true
-      }).stop();
-    } else {
-      timerValue.setValue(0);
-      Animated.timing(timerValue, {
-        toValue: 1,
-        duration: 9000,
-        useNativeDriver: false
-      }).start();
-    }
-  }, [timerDo, page]);
-
-  useEffect(() => {
+    timerValue.setValue(0);
     setData({
       inputCurrency: {
         currency: currencys[`currency${inputCurrency}`],
@@ -103,6 +96,24 @@ function treningMode({
     setIsAnwsered('');
     setTimerDo(true);
   }, [page]);
+
+  useEffect(() => {
+    if (!timerDo) {
+      timerValue.stopAnimation();
+    } else {
+      // TS error fix
+      const copy: any = {...timerValue};
+      Animated.timing(timerValue, {
+        toValue: 1,
+        duration: TIMER_DURATION - TIMER_DURATION*copy._value,
+        useNativeDriver: false
+      }).start(e => {
+        if (!!e.finished) {
+          setTimeIsOut(true);
+        }
+      });
+    }
+  }, [timerDo]);
 
   useEffect(() => {
     setTrueAsw(currencyConverter(data));
@@ -139,7 +150,7 @@ function treningMode({
       }}
     >
       {
-        page < 3 ?
+        (page < 3 && !timeIsOut) ?
           <>
             <Text
               style={{
@@ -204,7 +215,7 @@ function treningMode({
             />
           </>
         :
-          <EndScreen procentArr={procentArr} />
+          <EndScreen procentArr={procentArr} timeIsOut={timeIsOut} />
       }
     </View>
   );

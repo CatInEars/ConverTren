@@ -1,0 +1,1 @@
+export const TIMER_DURATION = 9000;

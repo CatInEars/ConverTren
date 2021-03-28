@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 
 interface IProps {
   procentArr: number[],
-  sendProcent: (procent: number) => void
+  sendProcent: (procent: number) => void,
+  timeIsOut: boolean
 }
 
 function endScreen({
   procentArr,
-  sendProcent
+  sendProcent,
+  timeIsOut
 }: IProps) {
   const [average, setAverage] = useState(0);
   const navigation = useNavigation();
@@ -20,7 +22,7 @@ function endScreen({
     procentArr.forEach(item => {
       res += item;
     });
-    res /= procentArr.length;
+    res /= !!procentArr.length ? procentArr.length : 1;
     sendProcent(average);
     setAverage(res);
 
@@ -29,7 +31,7 @@ function endScreen({
 
   return (
     <View>
-      <Text>End</Text>
+      <Text>{timeIsOut ? 'TimeOut' : 'End'}</Text>
       <Text>{Math.round(average)}</Text>
       <Button
         title="EXIT"
