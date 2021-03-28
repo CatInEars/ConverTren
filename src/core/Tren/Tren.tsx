@@ -8,6 +8,7 @@ import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { CurrencySelector } from './CurrencySelector';
+import { DisableTimer } from './DisableTimer';
 import { Quote } from './Quote';
 import { StartButton } from './StartButton';
 
@@ -65,7 +66,8 @@ function tren({ lang }: IProps) {
         </Text>
       </View>
 
-      <StartButton lang={lang} /> 
+      <StartButton lang={lang} />
+      <DisableTimer />
 
       <Quote lang={lang} />
     </View>

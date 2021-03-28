@@ -20,13 +20,15 @@ import { TIMER_DURATION } from '../../common/timer_duration';
 interface IProps {
   currencyData: ICurrencyItem[],
   currencys: any,
-  lang: ILanguage
+  lang: ILanguage,
+  timerNeed: boolean
 }
 
 function treningMode({ 
   currencyData, 
   currencys, 
-  lang
+  lang,
+  timerNeed
 }: IProps) {
   const [answerValue, setAnswerValue] = useState('');
   const [count, setCount] = useState(getRandomWithStep(10, 3000, 10));
@@ -44,7 +46,7 @@ function treningMode({
   const [page, setPage] = useState(0);
   const [procentArr, setProcentArr] = useState<number[]>([]);
   const timerValue = useRef(new Animated.Value(0)).current;
-  const [timerDo, setTimerDo] = useState(true);
+  const [timerDo, setTimerDo] = useState(timerNeed);
   const [timeIsOut, setTimeIsOut] = useState(false);
   
   const { theme } = useContext(ThemeContext);
@@ -197,8 +199,9 @@ function treningMode({
                 disabled={!!isAnswered}
               />
             }
-
-            <Animated.View
+            {
+              timerNeed &&
+              <Animated.View
               style={
                 {
                   transform: [{ 
@@ -213,6 +216,7 @@ function treningMode({
                 }
               }
             />
+            }
           </>
         :
           <EndScreen procentArr={procentArr} timeIsOut={timeIsOut} />
@@ -228,6 +232,7 @@ export const TreningMode = connect(
       currency1: state.currency1,
       currency2: state.currency2,
     },
-    lang: state.localization
+    lang: state.localization,
+    timerNeed: state.timerNeed
   })
 )(treningMode);

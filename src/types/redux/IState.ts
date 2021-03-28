@@ -3,7 +3,8 @@ interface IState {
   currency1: ICurrency,
   currency2: ICurrency,
   currencyList: ICurrencyItem[],
-  statsAsw: number[]
+  statsAsw: number[],
+  timerNeed: boolean
 }
 
 type ILanguage = 'rus' | 'eng';

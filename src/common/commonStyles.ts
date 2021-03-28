@@ -8,6 +8,10 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  _centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   tabNavigatorContainer: {
     borderTopColor: 'gray',
     borderTopWidth: 1,
@@ -73,8 +77,11 @@ export const commonStyles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'OpenSans-Regular'
   },
+  trenTimerText: {
+    fontFamily: 'OpenSans-Regular'
+  },
   trenQuoteContainer: {
-    marginTop: 48
+    marginTop: 36
   },
   trenQuoteText: {
     color: 'gray',

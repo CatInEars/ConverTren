@@ -1,4 +1,9 @@
-type IAction = ILanguageAction | ICurrencyLoad | ISetCurrency | ISendProcent;
+type IAction = 
+ILanguageAction | 
+ICurrencyLoad | 
+ISetCurrency | 
+ISendProcent | 
+IChangeTimerNeed;
 
 interface ILanguageAction {
   type: 'CHANGE_LOCALIZATION',
@@ -21,4 +26,9 @@ interface ISetCurrency {
 interface ISendProcent {
   type: 'SEND_PROCENT',
   procent: number
+}
+
+interface IChangeTimerNeed {
+  type: 'CHANGE_TIMER_NEED',
+  value: boolean
 }

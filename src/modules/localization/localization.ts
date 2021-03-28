@@ -37,6 +37,10 @@ export const localization: any = {
     startButton: {
       rus: 'Начать тренировку',
       eng: 'Start tren'
+    },
+    disableTimer: {
+      rus: 'Таймер',
+      eng: 'Timer'
     }
   },
   currencyModal: {

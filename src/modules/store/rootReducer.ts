@@ -27,6 +27,11 @@ export function rootReducer(state = initialState, action: IAction): IState {
         action.procent
       ]
     }
+  } else if (action.type === 'CHANGE_TIMER_NEED') {
+    return {
+      ...state,
+      timerNeed: action.value
+    }
   }
 
   return state;

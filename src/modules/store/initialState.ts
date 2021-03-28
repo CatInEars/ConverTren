@@ -3,5 +3,6 @@ export const initialState: IState = {
   currency1: 'RUB',
   currency2: 'USD',
   currencyList: [],
-  statsAsw: []
+  statsAsw: [],
+  timerNeed: true
 }
