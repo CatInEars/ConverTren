@@ -48,7 +48,7 @@ function treningMode({
   const timerValue = useRef(new Animated.Value(0)).current;
   const [timerDo, setTimerDo] = useState(timerNeed);
   const [timeIsOut, setTimeIsOut] = useState(false);
-  
+
   const { theme } = useContext(ThemeContext);
 
   const navigation = useNavigation();
@@ -77,10 +77,11 @@ function treningMode({
     });
 
     return function() {
+      timerValue.stopAnimation();
       timerValue.setValue(0);
       setAnswerValue('');
       setIsAnwsered('');
-      setTimerDo(true);
+      setTimerDo(timerNeed);
     }
   }, []);
 
@@ -96,10 +97,11 @@ function treningMode({
     });
     setAnswerValue('');
     setIsAnwsered('');
-    setTimerDo(true);
+    setTimerDo(timerNeed);
   }, [page]);
 
   useEffect(() => {
+    console.log(timerDo, timerNeed);
     if (!timerDo) {
       timerValue.stopAnimation();
     } else {
@@ -111,6 +113,7 @@ function treningMode({
         useNativeDriver: false
       }).start(e => {
         if (!!e.finished) {
+          console.log('HERE');
           setTimeIsOut(true);
         }
       });
