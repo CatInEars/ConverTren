@@ -26,7 +26,9 @@ function currencyItem({
 }: IProps) {
   const Icon = flagsObjCircle[item.CharCode];
   const { theme } = useContext(ThemeContext);
-  
+
+  const secondCurrency = selectCurrency[`currency${Math.abs(currencyListNumber - 3)}`] === item.CharCode;
+
   function handlePress(newCurrency: ICurrency) {
     onChangeCurrency({
       newCurrency,
@@ -37,6 +39,10 @@ function currencyItem({
   return (
     <TouchableOpacity
       onPress={() => handlePress(item.CharCode)}
+      disabled={secondCurrency}
+      style={{
+        opacity: secondCurrency ? 0.3 : 1
+      }}
     >
       <View style={commonStyles.currencyItemContainer}>
         <View style={commonStyles.currencyIconContainer}>

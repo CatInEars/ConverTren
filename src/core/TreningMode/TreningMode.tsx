@@ -101,7 +101,6 @@ function treningMode({
   }, [page]);
 
   useEffect(() => {
-    console.log(timerDo, timerNeed);
     if (!timerDo) {
       timerValue.stopAnimation();
     } else {
@@ -113,7 +112,6 @@ function treningMode({
         useNativeDriver: false
       }).start(e => {
         if (!!e.finished) {
-          console.log('HERE');
           setTimeIsOut(true);
         }
       });
