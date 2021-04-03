@@ -10,8 +10,8 @@ export function currencyConverter({
   let outputCurrencyValue = 1;
 
   currencyData.map( item => {
-    if (item.CharCode === currency) inputCurrencyValue = item.Value;
-    if (item.CharCode === outputCurrency) outputCurrencyValue = item.Value;
+    if (item.CharCode === currency) inputCurrencyValue = item.Value / item.Nominal;
+    if (item.CharCode === outputCurrency) outputCurrencyValue = item.Value / item.Nominal;
   });
 
   return +((inputCurrencyValue/outputCurrencyValue) * count).toFixed(2);

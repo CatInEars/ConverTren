@@ -7,7 +7,7 @@ export function getCurrencyArr(json: any): ICurrencyItem[] {
     CharCode: 'RUB',
     ID: '',
     Name: 'Рубль',
-    Nominal: 50,
+    Nominal: 1,
     NumCode: '',
     Previous: 0,
     Value: 1
