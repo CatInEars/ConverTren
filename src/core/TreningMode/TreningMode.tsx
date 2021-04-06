@@ -135,7 +135,7 @@ function treningMode({
       setProcentArr([...procentArr, 0]);
       return setIsAnwsered('< 5');
     }
-    setIsAnwsered(Math.round(procent).toString());
+    setIsAnwsered(procent.toFixed(1));
     setProcentArr([...procentArr, procent]);
   }
 

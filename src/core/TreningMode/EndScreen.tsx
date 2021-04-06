@@ -9,30 +9,27 @@ interface IProps {
   timeIsOut: boolean
 }
 
-function endScreen({
-  procentArr,
-  sendProcent,
-  timeIsOut
-}: IProps) {
-  const [average, setAverage] = useState(0);
-  const navigation = useNavigation();
+function endScreen({ procentArr, sendProcent, timeIsOut}: IProps) {
 
-  useEffect(() => {
+  const navigation = useNavigation();
+  const [average, setAverage] = useState((function() {
     let res = 0;
     procentArr.forEach(item => {
       res += item;
     });
     res /= !!procentArr.length ? procentArr.length : 1;
-    sendProcent(average);
-    setAverage(res);
+    return +res.toFixed(1)
+  })());
 
+  useEffect(() => {
+    sendProcent(average);
     navigation.removeListener('beforeRemove', () => {});
-  }, [])
+  }, []);
 
   return (
     <View>
       <Text>{timeIsOut ? 'TimeOut' : 'End'}</Text>
-      <Text>{Math.round(average)}</Text>
+      <Text>{average}%</Text>
       <Button
         title="EXIT"
         onPress={() => navigation.navigate('MainApp')}

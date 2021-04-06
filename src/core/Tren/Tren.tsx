@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
@@ -13,12 +13,20 @@ import { Quote } from './Quote';
 import { StartButton } from './StartButton';
 
 interface IProps {
-  lang: ILanguage
+  lang: ILanguage,
+  statsAsw: number[]
 }
 
-function tren({ lang }: IProps) {
+function tren({ lang, statsAsw }: IProps) {
+  const [sorted, setSorted] = useState<number[]>([]);
+  const [arrLen, setArrLen] = useState(0);
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    setSorted([...statsAsw].sort((a: number, b: number) => a - b));
+    setArrLen(statsAsw.length);
+  }, [statsAsw]);
 
   const handlePress = (currencyListNumber: number) => {
     navigation.navigate('CurrencySelectModal', { currencyListNumber });
@@ -53,7 +61,10 @@ function tren({ lang }: IProps) {
             ...commonStyles.trenStatsText
           }}
         >
-          {localization.TrenScreen.lastAttempt[lang]}: --
+          {localization.TrenScreen.lastAttempt[lang]}:{' '}
+          {arrLen === 0 ? '--' : 
+          (statsAsw[arrLen - 1] < 5 ? '<5%' : `${statsAsw[arrLen - 1]}%`)
+          }
         </Text>
 
         <Text
@@ -62,7 +73,10 @@ function tren({ lang }: IProps) {
             ...commonStyles.trenStatsText
           }}
         >
-          {localization.TrenScreen.bestAttempt[lang]}: --
+          {localization.TrenScreen.bestAttempt[lang]}:{' '}
+          {arrLen === 0 ? '--' : 
+          (sorted[arrLen - 1] < 5 ? '<5%' : `${sorted[arrLen - 1]}%`)
+          }
         </Text>
       </View>
 
@@ -76,6 +90,7 @@ function tren({ lang }: IProps) {
 
 export const Tren = connect(
   (state: IState) => ({
-    lang: state.localization
+    lang: state.localization,
+    statsAsw: state.statsAsw
   })
 )(tren);
