@@ -3,21 +3,27 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
+import { currencyConverter } from '../../modules/currency/currencyConverter';
+import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
+import { getDataForConvert } from '../../modules/currency/otherHelper/getDataForConvert';
 import { localization } from '../../modules/localization/localization';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { CurrencySelector } from './CurrencySelector';
+import { CurrencyValue } from './CurrencyValue';
 import { DisableTimer } from './DisableTimer';
 import { Quote } from './Quote';
 import { StartButton } from './StartButton';
 
 interface IProps {
   lang: ILanguage,
-  statsAsw: number[]
+  statsAsw: number[],
+  currency: any,
+  currencyData: any
 }
 
-function tren({ lang, statsAsw }: IProps) {
+function tren({ lang, statsAsw, currency, currencyData }: IProps) {
   const [sorted, setSorted] = useState<number[]>([]);
   const [arrLen, setArrLen] = useState(0);
   const { theme } = useContext(ThemeContext);
@@ -52,6 +58,11 @@ function tren({ lang, statsAsw }: IProps) {
 
       <CurrencySelector
         handleOpenCurrencyList={handlePress}
+      />
+
+      <CurrencyValue 
+        currency={currency}
+        currencyData={currencyData}
       />
       
       <View style={commonStyles.trenStatsTextContainer}>
@@ -91,6 +102,11 @@ function tren({ lang, statsAsw }: IProps) {
 export const Tren = connect(
   (state: IState) => ({
     lang: state.localization,
-    statsAsw: state.statsAsw
+    statsAsw: state.statsAsw,
+    currency: {
+      currency1: state.currency1,
+      currency2: state.currency2
+    },
+    currencyData: state.currencyList
   })
 )(tren);

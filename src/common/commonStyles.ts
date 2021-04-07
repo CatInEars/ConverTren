@@ -58,6 +58,13 @@ export const commonStyles = StyleSheet.create({
   trenStatsText: {
     fontFamily: 'OpenSans-Regular'
   },
+  trenCurrencyValueTextContainer: {
+    marginTop: 4
+  },
+  trenCurrencyValueText: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 14
+  },
   trenStartButtonContainer: {
     marginTop: 32,
     borderRadius: 4
