@@ -52,7 +52,7 @@ export const commonStyles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular'
   },
   trenStatsTextContainer: {
-    marginTop: 12,
+    marginTop: 18,
     alignItems: 'center'
   },
   trenStatsText: {
