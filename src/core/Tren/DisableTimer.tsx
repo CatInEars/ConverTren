@@ -5,7 +5,7 @@ import { commonStyles } from '../../common/commonStyles';
 import { localization } from '../../modules/localization/localization';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
-import CheckBox from '@react-native-community/checkbox';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 interface IProps {
   timerNeed: boolean,
@@ -27,7 +27,7 @@ function disableTimer({
         marginTop: 8,
         width: 120,
         alignItems: 'center',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-between'
       }}
     >
       <Text
@@ -38,9 +38,17 @@ function disableTimer({
       >
         {localization.TrenScreen.disableTimer[lang]}
       </Text>
-      <CheckBox
-        value={timerNeed}
-        onValueChange={value => onChangeTimerNeed(value)}
+      <BouncyCheckbox
+        isChecked={timerNeed}
+        onPress={value => onChangeTimerNeed(value)}
+        fillColor='#58a6ff'
+        iconStyle={{
+          borderRadius: 10,
+          borderColor: timerNeed ? 'transparent' : 'gray'
+        }}
+        bounceFriction={10}
+        useNativeDriver={false}
+        size={24}
       />
     </View>
   );
