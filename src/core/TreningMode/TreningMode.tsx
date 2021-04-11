@@ -1,21 +1,22 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { View, Text, Button, Alert, Animated } from 'react-native';
+import { View, Alert, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { currencyConverter } from '../../modules/currency/currencyConverter'
 import { getRandomWithStep } from '../../modules/random/getRandomWithStep';
 import { getRandom } from '../../modules/random/getRandom';
-import { TextInput } from 'react-native-gesture-handler';
-import { getBGCInputWithTheme } from '../../modules/theme/getBGCInputWithTheme';
-import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
 import { EndScreen } from './EndScreen';
 import { localization } from '../../modules/localization/localization';
 import { useNavigation } from '@react-navigation/core';
-import { screenWidth } from '../../common/commonStyles';
 import { TIMER_DURATION } from '../../common/timer_duration';
+import { CurrencyInput } from './CurrencyInput';
+import { SelectButton } from './SelectButton';
+import { ConvertNumber } from './ConvertNumber';
+import { Timer } from './Timer';
+import { NextPage } from './NextPage';
+import { Accuracy } from './Accuracy';
 
 interface IProps {
   currencyData: ICurrencyItem[],
@@ -31,12 +32,12 @@ function treningMode({
   timerNeed
 }: IProps) {
   const [answerValue, setAnswerValue] = useState('');
-  const [count, setCount] = useState(getRandomWithStep(10, 3000, 10));
+  const [convertNum, setConvertNum] = useState(getRandomWithStep(10, 3000, 10));
   const [inputCurrency, setInputCurrency] = useState(getRandom(1, 2));
   const [data, setData] = useState<IConvertArgs>({
     inputCurrency: {
       currency: currencys[`currency${inputCurrency}`],
-      count
+      count: convertNum
     },
     outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
     currencyData
@@ -90,7 +91,7 @@ function treningMode({
     setData({
       inputCurrency: {
         currency: currencys[`currency${inputCurrency}`],
-        count
+        count: convertNum
       },
       outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
       currencyData
@@ -122,12 +123,6 @@ function treningMode({
     setTrueAsw(currencyConverter(data));
   }, [data])
 
-  const handleChange = (newValue: string): void => {
-    const last = newValue[newValue.length - 1];
-    if (last === '.' || last === ',' || last === ' ' || last === '-') return
-    setAnswerValue(newValue)
-  }
-
   const handleSubmit = (): void => {
     const procent = 100 - Math.abs( (+answerValue / trueAsw) - 1) * 100;
     setTimerDo(false);
@@ -140,7 +135,7 @@ function treningMode({
   }
 
   const nextPage = () => {
-    setCount(getRandomWithStep(10, 3000, 10));
+    setConvertNum(getRandomWithStep(10, 3000, 10));
     setInputCurrency(getRandom(1, 2));
     setPage(page + 1);
   }
@@ -155,68 +150,45 @@ function treningMode({
       {
         (page < 3 && !timeIsOut) ?
           <>
-            <Text
-              style={{
-                color: getTextColorWithTheme(theme),
-                ...commonStyles.treningModeCountText
-              }}
-            >
-              {`${count} ${currencySymbolObj[data.inputCurrency.currency]}`}
-            </Text>
+            <ConvertNumber
+              convertNum={convertNum}
+              data={data}
+            />
 
-            <TextInput 
-              value={answerValue}
-              onChangeText={handleChange}
-              style={{
-                ...commonStyles.treningScreenInput,
-                backgroundColor: getBGCInputWithTheme(theme),
-                color: getTextColorWithTheme(theme)
-              }}
-              keyboardType="number-pad"
-              onSubmitEditing={handleSubmit}
-              placeholder={
-                `${localization.treningMode.inputPlaceholder[lang]} ${currencySymbolObj[data.outputCurrency]}`
-              }
-              placeholderTextColor={getTextColorWithTheme(theme)}
-              editable={!isAnswered}
+            <CurrencyInput 
+              answerValue={answerValue}
+              setAnswerValue={setAnswerValue}
+              handleSubmit={handleSubmit}
+              lang={lang}
+              data={data}
+              isAnswered={isAnswered}
             />
 
             {
               !!isAnswered &&
               <>
-                <Text>{`${isAnswered}%`}</Text>
-                <Button 
-                  title="NEXT PAGE"
-                  onPress={nextPage}
+                <Accuracy
+                  procent={isAnswered}
+                />
+                <NextPage
+                  nextPage={nextPage}
                 />
               </>
             }
 
             {
               !!answerValue &&
-              <Button
-                title='SELECT'
-                onPress={handleSubmit}
-                disabled={!!isAnswered}
+              <SelectButton
+                handleSubmit={handleSubmit}
+                isAnswered={isAnswered}
               />
             }
+
             {
               timerNeed &&
-              <Animated.View
-              style={
-                {
-                  transform: [{ 
-                    translateX: timerValue.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [0, -screenWidth]
-                    }) 
-                  }],
-                  width: '100%',
-                  height: 10, 
-                  backgroundColor: 'orange',
-                }
-              }
-            />
+              <Timer
+                timerValue={timerValue}
+              />
             }
           </>
         :
