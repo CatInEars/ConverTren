@@ -133,13 +133,15 @@ export const commonStyles = StyleSheet.create({
     fontSize: 20
   },
   treningModeCountText: {
-    fontSize: 24
+    fontSize: 26,
+    fontFamily: 'OpenSans-Regular'
   },
   treningScreenInput: {
-    width: '100%',
-    height: 60,
+    width: '80%',
+    height: 45,
     paddingHorizontal: 12,
-    marginTop: 24
+    marginTop: 24,
+    fontFamily: 'OpenSans-Regular'
   },
   trenScreenCurrencyButtonsContainer: {
     flexDirection: 'row',
@@ -152,5 +154,22 @@ export const commonStyles = StyleSheet.create({
   trenScreenConvertIcon: {
     width: 25,
     height: 20
+  },
+  trenModeSelectContainer: {
+    width: '70%',
+    height: 37,
+    borderRadius: 16,
+    overflow: 'hidden',
+    marginTop: 20
+  },
+  trenModeSelect: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  trenModeSelectText: {
+    textTransform: 'uppercase',
+    fontFamily: 'OpenSans-SemiBold',
+    color: 'white'
   }
 });

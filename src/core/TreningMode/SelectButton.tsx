@@ -1,20 +1,39 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { commonStyles } from '../../common/commonStyles';
 
 interface IProps {
   handleSubmit: () => void,
-  isAnswered: string
+  isAnswered: string,
+  answerValue: string
 }
 
 export function SelectButton({
   handleSubmit,
-  isAnswered
+  isAnswered,
+  answerValue
 }: IProps) {
+  const disabled= !!isAnswered || !answerValue
+
   return (
-    <Button
-      title='SELECT'
+    <TouchableOpacity
+      style={commonStyles.trenModeSelectContainer}
+      activeOpacity={0.75}
+      disabled={disabled}
       onPress={handleSubmit}
-      disabled={!!isAnswered}
-    />
+    >
+      <View
+        style={{
+          ...commonStyles.trenModeSelect,
+          backgroundColor: disabled ? 'lightgray' : '#15C160'
+        }}
+      >
+        <Text
+          style={commonStyles.trenModeSelectText}
+        >
+          Select
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }

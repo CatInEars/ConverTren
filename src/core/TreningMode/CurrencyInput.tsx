@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { commonStyles } from '../../common/commonStyles';
 import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
@@ -33,21 +34,30 @@ export function CurrencyInput({
   }
 
   return (
-    <TextInput 
-      value={answerValue}
-      onChangeText={handleChange}
-      style={{
-        ...commonStyles.treningScreenInput,
-        backgroundColor: getBGCInputWithTheme(theme),
-        color: getTextColorWithTheme(theme)
-      }}
-      keyboardType="number-pad"
-      onSubmitEditing={handleSubmit}
-      placeholder={
-        `${localization.treningMode.inputPlaceholder[lang]} ${currencySymbolObj[data.outputCurrency]}`
-      }
-      placeholderTextColor={getTextColorWithTheme(theme)}
-      editable={!isAnswered}
-    />
+    <>
+      <TextInput 
+        value={answerValue}
+        onChangeText={handleChange}
+        style={{
+          ...commonStyles.treningScreenInput,
+          color: getTextColorWithTheme(theme)
+        }}
+        keyboardType="number-pad"
+        onSubmitEditing={handleSubmit}
+        placeholder={
+          `${localization.treningMode.inputPlaceholder[lang]} ${currencySymbolObj[data.outputCurrency]}`
+        }
+        placeholderTextColor={getTextColorWithTheme(theme)}
+        editable={!isAnswered}
+      />
+      <View 
+        style={{
+          backgroundColor: 'gray',
+          width: '77%',
+          height: 2,
+          borderRadius: 3
+        }}
+      />
+    </>
   );
 }

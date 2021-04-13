@@ -164,7 +164,13 @@ function treningMode({
               isAnswered={isAnswered}
             />
 
-            {
+            <SelectButton
+              handleSubmit={handleSubmit}
+              isAnswered={isAnswered}
+              answerValue={answerValue}
+            />
+
+{
               !!isAnswered &&
               <>
                 <Accuracy
@@ -174,14 +180,6 @@ function treningMode({
                   nextPage={nextPage}
                 />
               </>
-            }
-
-            {
-              !!answerValue &&
-              <SelectButton
-                handleSubmit={handleSubmit}
-                isAnswered={isAnswered}
-              />
             }
 
             {
