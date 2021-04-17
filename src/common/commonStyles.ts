@@ -171,5 +171,15 @@ export const commonStyles = StyleSheet.create({
     textTransform: 'uppercase',
     fontFamily: 'OpenSans-SemiBold',
     color: 'white'
+  },
+  trenModeDataContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  trenModeBackButton: {
+    position: 'absolute',
+    left: '5%',
+    top: "3%"
   }
 });

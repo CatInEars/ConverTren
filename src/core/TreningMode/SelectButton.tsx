@@ -25,7 +25,7 @@ export function SelectButton({
       <View
         style={{
           ...commonStyles.trenModeSelect,
-          backgroundColor: disabled ? 'lightgray' : '#15C160'
+          backgroundColor: disabled ? '#BCBCBC' : '#15C160'
         }}
       >
         <Text

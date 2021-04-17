@@ -17,6 +17,7 @@ import { ConvertNumber } from './ConvertNumber';
 import { Timer } from './Timer';
 import { NextPage } from './NextPage';
 import { Accuracy } from './Accuracy';
+import { BackButton } from './BackButton';
 
 interface IProps {
   currencyData: ICurrencyItem[],
@@ -150,6 +151,10 @@ function treningMode({
       {
         (page < 3 && !timeIsOut) ?
           <>
+            <BackButton
+              theme={theme}
+            />
+
             <ConvertNumber
               convertNum={convertNum}
               data={data}
@@ -170,7 +175,7 @@ function treningMode({
               answerValue={answerValue}
             />
 
-{
+            {
               !!isAnswered &&
               <>
                 <Accuracy
