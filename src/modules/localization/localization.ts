@@ -103,6 +103,22 @@ export const localization: any = {
     alertCancelButton: {
       rus: 'Остаться',
       eng: 'Stay'
+    },
+    selectButton: {
+      rus: 'Ответить',
+      eng: 'Select'
+    },
+    nextPage: {
+      rus: 'Следующий пример',
+      eng: 'Next page'
+    },
+    trueAsw: {
+      rus: 'Точный ответ',
+      eng: 'Сorrect answer'
+    },
+    accuracy: {
+      rus: 'Точность',
+      eng: 'Accuracy'
     }
   }
 }

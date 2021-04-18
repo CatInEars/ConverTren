@@ -18,6 +18,7 @@ import { Timer } from './Timer';
 import { NextPage } from './NextPage';
 import { Accuracy } from './Accuracy';
 import { BackButton } from './BackButton';
+import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
 
 interface IProps {
   currencyData: ICurrencyItem[],
@@ -43,7 +44,7 @@ function treningMode({
     outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
     currencyData
   });
-  const [trueAsw, setTrueAsw] = useState(currencyConverter(data));
+  const [trueAsw, setTrueAsw] = useState(Math.round(currencyConverter(data)));
   const [isAnswered, setIsAnwsered] = useState('');
   const [page, setPage] = useState(0);
   const [procentArr, setProcentArr] = useState<number[]>([]);
@@ -121,7 +122,7 @@ function treningMode({
   }, [timerDo]);
 
   useEffect(() => {
-    setTrueAsw(currencyConverter(data));
+    setTrueAsw(Math.round(currencyConverter(data)));
   }, [data])
 
   const handleSubmit = (): void => {
@@ -173,6 +174,7 @@ function treningMode({
               handleSubmit={handleSubmit}
               isAnswered={isAnswered}
               answerValue={answerValue}
+              lang={lang}
             />
 
             {
@@ -180,8 +182,16 @@ function treningMode({
               <>
                 <Accuracy
                   procent={isAnswered}
+                  trueAsw={trueAsw}
+                  lang={lang}
+                  outputCurrency={
+                    currencySymbolObj[
+                      currencys[`currency${Math.abs(inputCurrency-3)}`]
+                    ]
+                  }
                 />
                 <NextPage
+                  lang={lang} 
                   nextPage={nextPage}
                 />
               </>

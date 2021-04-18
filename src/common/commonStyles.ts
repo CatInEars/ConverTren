@@ -180,7 +180,7 @@ export const commonStyles = StyleSheet.create({
   trenModeBackButton: {
     position: 'absolute',
     left: '5%',
-    top: "3%"
+    top: '3%'
   },
   trenModeNextPageContainer: {
     width: '80%',
@@ -200,6 +200,15 @@ export const commonStyles = StyleSheet.create({
   trenModeNextPageText: {
     color: 'white',
     textTransform: 'uppercase',
+    fontFamily: 'OpenSans-Regular'
+  },
+  trenModeAccuracyContainer: {
+    width: '100%',
+    marginTop: 24,
+    alignItems: 'center'
+  },
+  trenModeAccuracyText: {
+    fontSize: 16,
     fontFamily: 'OpenSans-Regular'
   }
 });
