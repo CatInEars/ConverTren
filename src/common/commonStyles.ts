@@ -159,13 +159,13 @@ export const commonStyles = StyleSheet.create({
     width: '70%',
     height: 37,
     borderRadius: 16,
-    overflow: 'hidden',
     marginTop: 20
   },
   trenModeSelect: {
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 16
   },
   trenModeSelectText: {
     textTransform: 'uppercase',
@@ -181,5 +181,25 @@ export const commonStyles = StyleSheet.create({
     position: 'absolute',
     left: '5%',
     top: "3%"
+  },
+  trenModeNextPageContainer: {
+    width: '80%',
+    height: 45,
+    position: 'absolute',
+    justifyContent: 'center',
+    borderRadius: 8,
+    overflow: 'hidden'
+  },
+  trenModeNextPage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#58a6ff'
+  },
+  trenModeNextPageText: {
+    color: 'white',
+    textTransform: 'uppercase',
+    fontFamily: 'OpenSans-Regular'
   }
 });

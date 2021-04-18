@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { Back } from '../svgs/TreningMode/Back';
 
 interface IProps {
@@ -18,7 +17,7 @@ export function BackButton({ theme }: IProps) {
       onPress={navigation.goBack}
     >
       <Back
-        fill={getTextColorWithTheme(theme)}
+        fill='gray'
       />
     </TouchableOpacity>
   );
