@@ -136,11 +136,16 @@ export const commonStyles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'OpenSans-Regular'
   },
-  treningScreenInput: {
+  trenModeInputContainer: {
     width: '80%',
-    height: 45,
-    paddingHorizontal: 12,
+    height: 45, 
     marginTop: 24,
+    position: 'relative',
+  },
+  treningScreenInput: {
+    width: '100%',
+    height: '100%',
+    paddingHorizontal: 12,
     fontFamily: 'OpenSans-Regular'
   },
   trenScreenCurrencyButtonsContainer: {

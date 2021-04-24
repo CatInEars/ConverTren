@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { commonStyles } from '../../common/commonStyles';
 import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
 import { localization } from '../../modules/localization/localization';
-import { getBGCInputWithTheme } from '../../modules/theme/getBGCInputWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 
@@ -35,6 +34,7 @@ export function CurrencyInput({
 
   return (
     <>
+    <View style={commonStyles.trenModeInputContainer}>
       <TextInput 
         value={answerValue}
         onChangeText={handleChange}
@@ -50,6 +50,15 @@ export function CurrencyInput({
         placeholderTextColor={getTextColorWithTheme(theme)}
         editable={!isAnswered}
       />
+      <Text style={{
+        position: 'absolute',
+        right: '5%',
+        top: '25%',
+        fontSize: 17,
+        fontFamily: 'OpenSans-Regular',
+        color: 'gray'
+      }}>{currencySymbolObj[data.outputCurrency]}</Text>
+    </View>
       <View 
         style={{
           backgroundColor: 'gray',

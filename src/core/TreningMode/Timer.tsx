@@ -21,8 +21,10 @@ export function Timer({
             }) 
           }],
           width: '100%',
-          height: 10, 
+          height: 15, 
           backgroundColor: 'orange',
+          position: 'absolute',
+          bottom: 0
         }
       }
     />
