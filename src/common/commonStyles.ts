@@ -143,7 +143,7 @@ export const commonStyles = StyleSheet.create({
     position: 'relative',
   },
   treningScreenInput: {
-    width: '100%',
+    width: '90%',
     height: '100%',
     paddingHorizontal: 12,
     fontFamily: 'OpenSans-Regular'
@@ -215,5 +215,13 @@ export const commonStyles = StyleSheet.create({
   trenModeAccuracyText: {
     fontSize: 16,
     fontFamily: 'OpenSans-Regular'
+  },
+  trenModeInputCurrencySymbol: {
+    position: 'absolute',
+    right: '5%',
+    top: '25%',
+    fontSize: 17,
+    fontFamily: 'OpenSans-Regular',
+    color: 'gray'
   }
 });

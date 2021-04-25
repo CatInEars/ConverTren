@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 interface IProps {
   procentArr: number[],
   sendProcent: (procent: number) => void,
-  timeIsOut: boolean
+  timeIsOut: boolean,
+  setPage: (pageNum: number) => void
 }
 
-function endScreen({ procentArr, sendProcent, timeIsOut}: IProps) {
+function endScreen({ procentArr, sendProcent, timeIsOut, setPage}: IProps) {
 
   const navigation = useNavigation();
   const [average, setAverage] = useState((function() {
@@ -33,6 +34,10 @@ function endScreen({ procentArr, sendProcent, timeIsOut}: IProps) {
       <Button
         title="EXIT"
         onPress={() => navigation.navigate('MainApp')}
+      />
+      <Button 
+        title="RESTART"
+        onPress={() => setPage(0)}
       />
     </View>
   );

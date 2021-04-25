@@ -50,14 +50,14 @@ export function CurrencyInput({
         placeholderTextColor={getTextColorWithTheme(theme)}
         editable={!isAnswered}
       />
-      <Text style={{
-        position: 'absolute',
-        right: '5%',
-        top: '25%',
-        fontSize: 17,
-        fontFamily: 'OpenSans-Regular',
-        color: 'gray'
-      }}>{currencySymbolObj[data.outputCurrency]}</Text>
+      {
+        !!answerValue &&
+        <Text 
+          style={commonStyles.trenModeInputCurrencySymbol}
+        >
+          {currencySymbolObj[data.outputCurrency]}
+        </Text>
+      }
     </View>
       <View 
         style={{

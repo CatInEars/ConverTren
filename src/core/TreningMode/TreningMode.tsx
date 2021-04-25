@@ -51,34 +51,33 @@ function treningMode({
   const timerValue = useRef(new Animated.Value(0)).current;
   const [timerDo, setTimerDo] = useState(timerNeed);
   const [timeIsOut, setTimeIsOut] = useState(false);
+  const modalCall = (e: any) => {
+    e.preventDefault();
+    setTimerDo(false);
+
+    Alert.alert(
+      localization.treningMode.alertTitle[lang],
+      localization.treningMode.alertText[lang],
+      [
+        { 
+          text: localization.treningMode.alertCancelButton[lang], 
+          style: 'cancel', 
+          onPress: () => setTimerDo(true)
+        },
+        {
+          text: localization.treningMode.alertOkButton[lang],
+          style: 'destructive',
+          onPress: () => navigation.dispatch(e.data.action),
+        },
+      ]
+    );
+  }
 
   const { theme } = useContext(ThemeContext);
 
   const navigation = useNavigation();
 
   useEffect(() => {
-    navigation.addListener('beforeRemove', (e) => {
-      e.preventDefault();
-      setTimerDo(false);
-
-      Alert.alert(
-        localization.treningMode.alertTitle[lang],
-        localization.treningMode.alertText[lang],
-        [
-          { 
-            text: localization.treningMode.alertCancelButton[lang], 
-            style: 'cancel', 
-            onPress: () => setTimerDo(true)
-          },
-          {
-            text: localization.treningMode.alertOkButton[lang],
-            style: 'destructive',
-            onPress: () => navigation.dispatch(e.data.action),
-          },
-        ]
-      );
-    });
-
     return function() {
       timerValue.stopAnimation();
       timerValue.setValue(0);
@@ -89,18 +88,26 @@ function treningMode({
   }, []);
 
   useEffect(() => {
-    timerValue.setValue(0);
-    setData({
-      inputCurrency: {
-        currency: currencys[`currency${inputCurrency}`],
-        count: convertNum
-      },
-      outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
-      currencyData
-    });
-    setAnswerValue('');
-    setIsAnwsered('');
-    setTimerDo(timerNeed);
+    if (page === 0) {
+      navigation.addListener('beforeRemove', modalCall);
+    }
+
+    if (page === 3) {
+      setTimerDo(false);
+    } else {
+      timerValue.setValue(0);
+      setData({
+        inputCurrency: {
+          currency: currencys[`currency${inputCurrency}`],
+          count: convertNum
+        },
+        outputCurrency: currencys[`currency${Math.abs(inputCurrency-3)}`],
+        currencyData
+      });
+      setAnswerValue('');
+      setIsAnwsered('');
+      setTimerDo(timerNeed);
+    }
   }, [page]);
 
   useEffect(() => {
@@ -198,14 +205,18 @@ function treningMode({
             }
 
             {
-              timerNeed &&
+              timerNeed && !isAnswered &&
               <Timer
                 timerValue={timerValue}
               />
             }
           </>
         :
-          <EndScreen procentArr={procentArr} timeIsOut={timeIsOut} />
+          <EndScreen 
+            procentArr={procentArr} 
+            timeIsOut={timeIsOut}
+            setPage={setPage}
+          />
       }
     </View>
   );
