@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { View, Alert, Animated } from 'react-native';
 import { connect } from 'react-redux';
-import { commonStyles } from '../../common/commonStyles';
-import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
-import { ThemeContext } from '../../modules/theme/ThemeContext';
-import { currencyConverter } from '../../modules/currency/currencyConverter'
-import { getRandomWithStep } from '../../modules/random/getRandomWithStep';
-import { getRandom } from '../../modules/random/getRandom';
-import { EndScreen } from './EndScreen';
-import { localization } from '../../modules/localization/localization';
 import { useNavigation } from '@react-navigation/core';
-import { TIMER_DURATION } from '../../common/timer_duration';
+import { commonStyles } from '../../../common/commonStyles';
+import { getBGCWithTheme } from '../../../modules/theme/getBGCWithTheme';
+import { ThemeContext } from '../../../modules/theme/ThemeContext';
+import { currencyConverter } from '../../../modules/currency/currencyConverter'
+import { getRandomWithStep } from '../../../modules/random/getRandomWithStep';
+import { getRandom } from '../../../modules/random/getRandom';
+import { EndScreen } from '.././EndScreen/EndScreen';
+import { localization } from '../../../modules/localization/localization';
+import { TIMER_DURATION } from '../../../common/timer_duration';
 import { CurrencyInput } from './CurrencyInput';
 import { SelectButton } from './SelectButton';
 import { ConvertNumber } from './ConvertNumber';
@@ -18,7 +18,7 @@ import { Timer } from './Timer';
 import { NextPage } from './NextPage';
 import { Accuracy } from './Accuracy';
 import { BackButton } from './BackButton';
-import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
+import { currencySymbolObj } from '../../../modules/currency/currencySymbolObj';
 
 interface IProps {
   currencyData: ICurrencyItem[],

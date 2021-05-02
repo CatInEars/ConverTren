@@ -1,6 +1,6 @@
 import React from 'react';
 import { Animated } from 'react-native';
-import { screenWidth } from '../../common/commonStyles';
+import { screenWidth } from '../../../common/commonStyles';
 
 interface IProps {
   timerValue: any

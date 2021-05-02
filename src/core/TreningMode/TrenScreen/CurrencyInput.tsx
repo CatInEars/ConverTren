@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { commonStyles } from '../../common/commonStyles';
-import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
-import { localization } from '../../modules/localization/localization';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
-import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { commonStyles } from '../../../common/commonStyles';
+import { currencySymbolObj } from '../../../modules/currency/currencySymbolObj';
+import { localization } from '../../../modules/localization/localization';
+import { getTextColorWithTheme } from '../../../modules/theme/getTextColorWithTheme';
+import { ThemeContext } from '../../../modules/theme/ThemeContext';
 
 interface IProps {
   answerValue: string,

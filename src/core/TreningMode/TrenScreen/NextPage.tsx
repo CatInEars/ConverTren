@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Text, View } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { commonStyles } from '../../common/commonStyles';
-import { localization } from '../../modules/localization/localization';
+import { commonStyles } from '../../../common/commonStyles';
+import { localization } from '../../../modules/localization/localization';
 
 interface IProps {
   nextPage: () => void,

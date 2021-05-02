@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { commonStyles } from '../../common/commonStyles';
-import { localization } from '../../modules/localization/localization';
+import { commonStyles } from '../../../common/commonStyles';
+import { localization } from '../../../modules/localization/localization';
 
 interface IProps {
   handleSubmit: () => void,

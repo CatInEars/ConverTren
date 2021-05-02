@@ -223,5 +223,24 @@ export const commonStyles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'OpenSans-Regular',
     color: 'gray'
+  },
+  endScreenButtonsContainer: {
+    position: 'absolute',
+    flexDirection: 'row',
+    width: '90%',
+    height: 60,
+    bottom: 20,
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  endScreenTouchableStyle: {
+    height: 60, 
+    backgroundColor: '#58a6ff',
+    borderRadius: 8
+  },
+  endScreenButtonText: {
+    color: 'white',
+    fontFamily: 'OpenSans-SemiBold',
+    textTransform: 'uppercase'
   }
 });

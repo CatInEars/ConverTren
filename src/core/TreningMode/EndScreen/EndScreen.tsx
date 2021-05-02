@@ -1,7 +1,10 @@
 import { useNavigation } from '@react-navigation/core';
 import React, { Dispatch, useEffect, useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { commonStyles } from '../../../common/commonStyles';
+import { ExitButton } from './ExitButton';
+import { RestartButton } from './RestartButton';
 
 interface IProps {
   procentArr: number[],
@@ -13,7 +16,7 @@ interface IProps {
 function endScreen({ procentArr, sendProcent, timeIsOut, setPage}: IProps) {
 
   const navigation = useNavigation();
-  const [average, setAverage] = useState((function() {
+  const [average, _] = useState((function() {
     let res = 0;
     procentArr.forEach(item => {
       res += item;
@@ -28,17 +31,18 @@ function endScreen({ procentArr, sendProcent, timeIsOut, setPage}: IProps) {
   }, []);
 
   return (
-    <View>
+    <View
+      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+    >
       <Text>{timeIsOut ? 'TimeOut' : 'End'}</Text>
       <Text>{average}%</Text>
-      <Button
-        title="EXIT"
-        onPress={() => navigation.navigate('MainApp')}
-      />
-      <Button 
-        title="RESTART"
-        onPress={() => setPage(0)}
-      />
+
+      <View
+        style={commonStyles.endScreenButtonsContainer}
+      >
+        <RestartButton setPage={setPage} />
+        <ExitButton />
+      </View>
     </View>
   );
 }

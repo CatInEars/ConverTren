@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { commonStyles } from '../../common/commonStyles';
-import { Back } from '../svgs/TreningMode/Back';
+import { commonStyles } from '../../../common/commonStyles';
+import { Back } from '../../svgs/TreningMode/Back';
 
 interface IProps {
   theme: ITheme

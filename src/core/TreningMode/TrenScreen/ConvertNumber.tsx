@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Text } from 'react-native';
-import { commonStyles } from '../../common/commonStyles';
-import { currencySymbolObj } from '../../modules/currency/currencySymbolObj';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
-import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { commonStyles } from '../../../common/commonStyles';
+import { currencySymbolObj } from '../../../modules/currency/currencySymbolObj';
+import { getTextColorWithTheme } from '../../../modules/theme/getTextColorWithTheme';
+import { ThemeContext } from '../../../modules/theme/ThemeContext';
 
 interface IProps {
   data: IConvertArgs,

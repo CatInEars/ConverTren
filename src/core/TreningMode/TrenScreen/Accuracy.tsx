@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { commonStyles } from '../../common/commonStyles';
-import { localization } from '../../modules/localization/localization';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
-import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { commonStyles } from '../../../common/commonStyles';
+import { localization } from '../../../modules/localization/localization';
+import { getTextColorWithTheme } from '../../../modules/theme/getTextColorWithTheme';
+import { ThemeContext } from '../../../modules/theme/ThemeContext';
 
 interface IProps {
   procent: string,
