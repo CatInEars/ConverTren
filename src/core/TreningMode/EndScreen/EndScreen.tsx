@@ -32,7 +32,7 @@ function endScreen({ procentArr, sendProcent, timeIsOut, setPage}: IProps) {
 
   return (
     <View
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+      style={commonStyles._center}
     >
       <Text>{timeIsOut ? 'TimeOut' : 'End'}</Text>
       <Text>{average}%</Text>

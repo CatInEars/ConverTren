@@ -1,26 +1,25 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { Text, TouchableHighlight, View } from 'react-native';
+import { Text, View, TouchableHighlight } from 'react-native';
 import { commonStyles } from '../../../common/commonStyles';
 
 export function ExitButton() {
   const { navigate } = useNavigation();
 
   return (
-    <TouchableHighlight
-      onPress={() => navigate('MainApp')}
+    <View
       style={{
+        ...commonStyles.endScreenButtonContainer,
         width: '60%',
-        ...commonStyles.endScreenTouchableStyle
       }}
     >
-      <View style={commonStyles._center}>
-        <Text
-          style={commonStyles.endScreenButtonText}
-        >
-          Выйти
-        </Text>
-      </View>
-    </TouchableHighlight>
+      <TouchableHighlight onPress={() => navigate('MainApp')}>
+        <View style={commonStyles.trenModeNextPage}>
+          <Text style={commonStyles.endScreenButtonText}>
+            Выйти
+          </Text>
+        </View>
+      </TouchableHighlight>
+    </View>
   );
 }

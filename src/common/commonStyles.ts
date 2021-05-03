@@ -233,14 +233,14 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center'
   },
-  endScreenTouchableStyle: {
-    height: 60, 
-    backgroundColor: '#58a6ff',
-    borderRadius: 8
-  },
   endScreenButtonText: {
     color: 'white',
     fontFamily: 'OpenSans-SemiBold',
     textTransform: 'uppercase'
+  },
+  endScreenButtonContainer: {
+    height: 60,
+    borderRadius: 8,
+    overflow: 'hidden'
   }
 });
