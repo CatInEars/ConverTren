@@ -10,10 +10,17 @@ interface IProps {
   procentArr: number[],
   sendProcent: (procent: number) => void,
   timeIsOut: boolean,
-  setPage: (pageNum: number) => void
+  setPage: (pageNum: number) => void,
+  setTimeIsOut: (value: boolean) => void
 }
 
-function endScreen({ procentArr, sendProcent, timeIsOut, setPage}: IProps) {
+function endScreen({ 
+  procentArr, 
+  sendProcent, 
+  timeIsOut, 
+  setPage,
+  setTimeIsOut
+}: IProps) {
 
   const navigation = useNavigation();
   const [average, _] = useState((function() {
@@ -40,7 +47,10 @@ function endScreen({ procentArr, sendProcent, timeIsOut, setPage}: IProps) {
       <View
         style={commonStyles.endScreenButtonsContainer}
       >
-        <RestartButton setPage={setPage} />
+        <RestartButton 
+          setPage={setPage} 
+          setTimeIsOut={setTimeIsOut}
+        />
         <ExitButton />
       </View>
     </View>

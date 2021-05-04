@@ -96,6 +96,7 @@ function treningMode({
       setTimerDo(false);
     } else {
       timerValue.setValue(0);
+      setTimerDo(timerNeed);
       setData({
         inputCurrency: {
           currency: currencys[`currency${inputCurrency}`],
@@ -106,12 +107,11 @@ function treningMode({
       });
       setAnswerValue('');
       setIsAnwsered('');
-      setTimerDo(timerNeed);
     }
   }, [page]);
 
   useEffect(() => {
-    if (!timerDo) {
+    if (!timerDo && timeIsOut) {
       timerValue.stopAnimation();
     } else {
       // TS error fix
@@ -123,10 +123,11 @@ function treningMode({
       }).start(e => {
         if (!!e.finished) {
           setTimeIsOut(true);
+          setPage(10);
         }
       });
     }
-  }, [timerDo]);
+  }, [timerDo, timeIsOut]);
 
   useEffect(() => {
     setTrueAsw(Math.round(currencyConverter(data)));
@@ -216,6 +217,7 @@ function treningMode({
             procentArr={procentArr} 
             timeIsOut={timeIsOut}
             setPage={setPage}
+            setTimeIsOut={setTimeIsOut}
           />
       }
     </View>
