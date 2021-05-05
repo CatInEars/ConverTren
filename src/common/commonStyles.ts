@@ -226,20 +226,19 @@ export const commonStyles = StyleSheet.create({
   },
   endScreenButtonsContainer: {
     position: 'absolute',
-    flexDirection: 'row',
-    width: '90%',
-    height: 60,
+    width: '80%',
     bottom: 20,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   endScreenButtonText: {
-    color: 'white',
-    fontFamily: 'OpenSans-SemiBold',
-    textTransform: 'uppercase'
+    color: 'gray',
+    fontFamily: 'OpenSans-Regular',
+    textTransform: 'uppercase',
+    fontSize: 14,
   },
   endScreenButtonContainer: {
-    height: 60,
+    height: 45,
     borderRadius: 8,
     overflow: 'hidden'
   }

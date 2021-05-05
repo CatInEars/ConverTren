@@ -7,19 +7,16 @@ export function ExitButton() {
   const { navigate } = useNavigation();
 
   return (
-    <View
-      style={{
-        ...commonStyles.endScreenButtonContainer,
-        width: '60%',
-      }}
-    >
-      <TouchableHighlight onPress={() => navigate('MainApp')}>
-        <View style={commonStyles.trenModeNextPage}>
-          <Text style={commonStyles.endScreenButtonText}>
-            Выйти
-          </Text>
-        </View>
-      </TouchableHighlight>
-    </View>
+    <TouchableHighlight onPress={() => navigate('MainApp')}>
+      <View style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 12
+      }}>
+        <Text style={commonStyles.endScreenButtonText}>
+          Выйти
+        </Text>
+      </View>
+    </TouchableHighlight>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableHighlight } from 'react-native';
+import { View, TouchableHighlight, Text } from 'react-native';
 import { commonStyles } from '../../../common/commonStyles';
 import { ReloadIcon } from '../../svgs/TreningMode/ReloadIcon';
 
@@ -16,12 +16,15 @@ export function RestartButton({
     <TouchableHighlight
       style={{
         ...commonStyles.endScreenButtonContainer,
-        width: '30%'
+        width: '100%'
       }}
-      onPress={() => {setPage(0); setTimeIsOut(false)}}
+      onPress={() => {
+        setPage(0); 
+        setTimeIsOut(false)
+      }}
     >
       <View style={commonStyles.trenModeNextPage}>
-        <ReloadIcon />
+        <Text>Ещё раз</Text>
       </View>
     </TouchableHighlight>
   );

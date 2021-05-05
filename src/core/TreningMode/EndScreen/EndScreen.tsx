@@ -45,7 +45,8 @@ function endScreen({
       <Text>{average}%</Text>
 
       <View
-        style={commonStyles.endScreenButtonsContainer}
+        style={[commonStyles.endScreenButtonsContainer, {
+        }]}
       >
         <RestartButton 
           setPage={setPage} 

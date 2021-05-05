@@ -111,7 +111,7 @@ function treningMode({
   }, [page]);
 
   useEffect(() => {
-    if (!timerDo && timeIsOut) {
+    if (!timerDo || timeIsOut) {
       timerValue.stopAnimation();
     } else {
       // TS error fix
