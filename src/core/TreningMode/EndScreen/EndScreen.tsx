@@ -3,6 +3,7 @@ import React, { Dispatch, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../../common/commonStyles';
+import { localization } from '../../../modules/localization/localization';
 import { ExitButton } from './ExitButton';
 import { RestartButton } from './RestartButton';
 
@@ -11,7 +12,8 @@ interface IProps {
   sendProcent: (procent: number) => void,
   timeIsOut: boolean,
   setPage: (pageNum: number) => void,
-  setTimeIsOut: (value: boolean) => void
+  setTimeIsOut: (value: boolean) => void,
+  lang: ILanguage
 }
 
 function endScreen({ 
@@ -19,7 +21,8 @@ function endScreen({
   sendProcent, 
   timeIsOut, 
   setPage,
-  setTimeIsOut
+  setTimeIsOut,
+  lang
 }: IProps) {
 
   const navigation = useNavigation();
@@ -39,10 +42,24 @@ function endScreen({
 
   return (
     <View
-      style={commonStyles._center}
+      style={{...commonStyles._center, width: '100%'}}
     >
-      <Text>{timeIsOut ? 'TimeOut' : 'End'}</Text>
-      <Text>{average}%</Text>
+      <Text
+        style={commonStyles.endScreenTitle}
+      >
+        {
+          timeIsOut ? 
+            localization.treningMode.endTitleTime[lang]
+          : 
+            localization.treningMode.endTitleNormal[lang]
+        }
+      </Text>
+
+      <Text
+        style={commonStyles.endScreenAverage}
+      >
+        {`${localization.treningMode.average[lang]}: ${average}`}%
+      </Text>
 
       <View
         style={[commonStyles.endScreenButtonsContainer, {
@@ -51,15 +68,26 @@ function endScreen({
         <RestartButton 
           setPage={setPage} 
           setTimeIsOut={setTimeIsOut}
+          lang={lang}
         />
-        <ExitButton />
+        <ExitButton 
+          lang={lang}
+        />
+      </View>
+
+      <View style={commonStyles.easterEggContainer}>
+        <Text style={commonStyles.easterEggText}>
+          Hello from CatInEars
+        </Text>
       </View>
     </View>
   );
 }
 
 export const EndScreen = connect(
-  () => ({}),
+  (state: IState) => ({
+    lang: state.localization
+  }),
   (dispatch: Dispatch<ISendProcent>) => ({
     sendProcent: (procent: number) => {
       dispatch({type: 'SEND_PROCENT', procent})

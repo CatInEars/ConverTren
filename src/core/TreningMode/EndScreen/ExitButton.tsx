@@ -2,13 +2,24 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { Text, View, TouchableHighlight } from 'react-native';
 import { commonStyles } from '../../../common/commonStyles';
+import { localization } from '../../../modules/localization/localization';
 
-export function ExitButton() {
+
+interface IProps {
+  lang: ILanguage
+}
+
+export function ExitButton({
+  lang
+}: IProps) {
   const { navigate } = useNavigation();
 
   return (
     <TouchableHighlight 
       onPress={() => navigate('MainApp')}
+      activeOpacity={1}
+      underlayColor='transparent'
+      style={{width: '100%'}}
     >
       <View style={{
         justifyContent: 'center',
@@ -16,7 +27,7 @@ export function ExitButton() {
         marginTop: 12
       }}>
         <Text style={commonStyles.endScreenButtonText}>
-          Выйти
+          {localization.treningMode.exit[lang]}
         </Text>
       </View>
     </TouchableHighlight>

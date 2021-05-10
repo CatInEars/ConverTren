@@ -186,7 +186,7 @@ export const commonStyles = StyleSheet.create({
   trenModeBackButton: {
     position: 'absolute',
     left: '5%',
-    top: '3%'
+    top: '5%'
   },
   trenModeNextPageContainer: {
     width: '80%',
@@ -252,5 +252,26 @@ export const commonStyles = StyleSheet.create({
   },
   trenModeRestartText: {
     color: 'white'
+  },
+  endScreenTitle: {
+    fontFamily: 'OpenSans-SemiBold',
+    fontSize: 22
+  },
+  endScreenAverage: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 16,
+    marginTop: 18
+  },
+  easterEggContainer: {
+    position: 'absolute', 
+    top: 90, 
+    right: -25,
+    transform: [
+      {rotate: '-90deg'}
+    ]
+  },
+  easterEggText: {
+    fontSize: 10, 
+    color: 'lightgray',
   }
 });

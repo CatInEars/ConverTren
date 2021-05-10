@@ -119,6 +119,26 @@ export const localization: any = {
     accuracy: {
       rus: 'Точность',
       eng: 'Accuracy'
+    },
+    restart: {
+      rus: 'Ещё раз',
+      eng: 'Try again'
+    },
+    exit: {
+      rus: 'Выйти',
+      eng: 'Leave'
+    },
+    endTitleTime: {
+      rus: 'Время вышло',
+      eng: "time's up"
+    },
+    endTitleNormal: {
+      rus: 'Конец',
+      eng: 'End trening'
+    },
+    average: {
+      rus: 'Средняя точность',
+      eng: 'Average accuracy'
     }
   }
 }
