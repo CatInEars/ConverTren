@@ -7,7 +7,9 @@ export function ExitButton() {
   const { navigate } = useNavigation();
 
   return (
-    <TouchableHighlight onPress={() => navigate('MainApp')}>
+    <TouchableHighlight 
+      onPress={() => navigate('MainApp')}
+    >
       <View style={{
         justifyContent: 'center',
         alignItems: 'center',

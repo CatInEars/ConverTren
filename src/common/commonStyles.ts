@@ -30,7 +30,7 @@ export const commonStyles = StyleSheet.create({
   },
   stackHeader: {
     width: '100%', 
-    height: 55,
+    height: 60,
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
     borderStyle: 'solid',
@@ -38,6 +38,7 @@ export const commonStyles = StyleSheet.create({
     paddingHorizontal: 20
   },
   stackHeaderTitle: {
+    paddingTop: 8,
     fontSize: 24,
     fontFamily: 'OpenSans-Regular'
   },
@@ -241,5 +242,15 @@ export const commonStyles = StyleSheet.create({
     height: 45,
     borderRadius: 8,
     overflow: 'hidden'
+  },
+  trenModeRestartContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#58a6ff'
+  },
+  trenModeRestartText: {
+    color: 'white'
   }
 });

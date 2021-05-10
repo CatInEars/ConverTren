@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, TouchableHighlight, Text } from 'react-native';
 import { commonStyles } from '../../../common/commonStyles';
-import { ReloadIcon } from '../../svgs/TreningMode/ReloadIcon';
 
 interface IProps {
   setPage: (page: number) => void,
@@ -23,8 +22,8 @@ export function RestartButton({
         setTimeIsOut(false)
       }}
     >
-      <View style={commonStyles.trenModeNextPage}>
-        <Text>Ещё раз</Text>
+      <View style={commonStyles.trenModeRestartContainer}>
+        <Text style={commonStyles.trenModeRestartText}>Ещё раз</Text>
       </View>
     </TouchableHighlight>
   );

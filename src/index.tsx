@@ -1,16 +1,20 @@
-import React, { Dispatch, useEffect, useState } from 'react';
+import React, { Dispatch, useContext, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { ActivityIndicator, StatusBar } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { MainStackNavigation } from './navigation/mainParts/MainStackNavigation';
 import { useFonts } from 'expo-font'
 import { connect } from 'react-redux';
 import { getCurrencyArr } from './modules/currency/getCurrencyArr';
+import { StatusBar } from 'expo-status-bar';
+import { LIGHT } from './common/themes';
+import { ThemeContext } from './modules/theme/ThemeContext';
 
 interface IProps {
   onCurrencyLoad: any
 }
 
 function main({ onCurrencyLoad }: IProps) {
+  const { theme } = useContext(ThemeContext);
   const [currencyLoaded, setCurrencyLoaded] = useState(false);
   const [Fontloaded] = useFonts({
     'OpenSans-Regular': require('../assets/fonts/OpenSans-Regular.ttf'),
@@ -34,7 +38,7 @@ function main({ onCurrencyLoad }: IProps) {
         <NavigationContainer>
           <MainStackNavigation />
         </NavigationContainer>
-        <StatusBar barStyle="light-content" />
+        <StatusBar style={theme === LIGHT ? 'dark' : 'light'} />
       </>
       :
       <ActivityIndicator size={56} color='skyblue' />
