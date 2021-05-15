@@ -35,15 +35,30 @@ export function Accuracy({ procent, trueAsw, outputCurrency, lang }: IProps) {
       >
         {`${localization.treningMode.trueAsw[lang]}:  ${formatAsw} ${outputCurrency}`}
       </Text>
-
-      <Text 
+      
+      <View
         style={{
-          color: getTextColorWithTheme(theme),
-          ...commonStyles.trenModeAccuracyText
+          flexDirection: 'row'
         }}
       >
-        {`${localization.treningMode.accuracy[lang]}: ${procent}%`}
-      </Text>
+        <Text 
+          style={{
+            color: getTextColorWithTheme(theme),
+            ...commonStyles.trenModeAccuracyText
+          }}
+        >
+          {`${localization.treningMode.accuracy[lang]}: `}
+
+        </Text>
+        <Text 
+          style={{ 
+            color: +procent > 80 ? 'green' : (+procent > 50 ? 'orange' : 'red'),
+            ...commonStyles.trenModeAccuracyText
+          }}
+        >
+          {procent}%
+        </Text>
+      </View>
     </View>
   );
 }

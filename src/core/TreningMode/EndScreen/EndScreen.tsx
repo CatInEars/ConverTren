@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { Dispatch, useEffect, useState } from 'react';
+import React, { Dispatch, useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../../common/commonStyles';
 import { localization } from '../../../modules/localization/localization';
+import { getTextColorWithTheme } from '../../../modules/theme/getTextColorWithTheme';
+import { ThemeContext } from '../../../modules/theme/ThemeContext';
 import { ExitButton } from './ExitButton';
 import { RestartButton } from './RestartButton';
 
@@ -24,7 +26,7 @@ function endScreen({
   setTimeIsOut,
   lang
 }: IProps) {
-
+  const {theme} = useContext(ThemeContext);
   const navigation = useNavigation();
   const [average, _] = useState((function() {
     let res = 0;
@@ -45,7 +47,10 @@ function endScreen({
       style={{...commonStyles._center, width: '100%'}}
     >
       <Text
-        style={commonStyles.endScreenTitle}
+        style={{
+          ...commonStyles.endScreenTitle,
+          color: getTextColorWithTheme(theme)
+        }}
       >
         {
           timeIsOut ? 
@@ -54,12 +59,29 @@ function endScreen({
             localization.treningMode.endTitleNormal[lang]
         }
       </Text>
-
-      <Text
-        style={commonStyles.endScreenAverage}
+      
+      <View
+        style={{
+          flexDirection: 'row'
+        }}
       >
-        {`${localization.treningMode.average[lang]}: ${average}`}%
-      </Text>
+        <Text
+          style={{
+            ...commonStyles.endScreenAverage,
+            color: getTextColorWithTheme(theme)
+          }}
+        >
+          {`${localization.treningMode.average[lang]}: `}
+        </Text>
+        <Text
+          style={{
+            ...commonStyles.endScreenAverage,
+            color: average > 80 ? 'green' : (+average > 50 ? 'orange' : 'red')
+          }}
+        >
+          {average}%
+        </Text>
+      </View>
 
       <View
         style={[commonStyles.endScreenButtonsContainer, {
