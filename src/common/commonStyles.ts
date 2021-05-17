@@ -274,5 +274,18 @@ export const commonStyles = StyleSheet.create({
   easterEggText: {
     fontSize: 10, 
     color: 'lightgray',
+  },
+  noFoundTitle: {
+    fontSize: 24,
+    fontFamily: 'OpenSans-SemiBold',
+    textAlign: 'center',
+    color: 'darkgray'
+  },
+  noFoundText: {
+    fontSize: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    color: 'darkgray'
   }
 });

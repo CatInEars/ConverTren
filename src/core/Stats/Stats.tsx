@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { NoStats } from './NoStats';
 
-export function Stats() {
+interface IProps {
+  answerArr: number[]
+}
+
+function stats({ answerArr }: IProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -15,13 +21,24 @@ export function Stats() {
         backgroundColor: getBGCWithTheme(theme)
       }}
     >
-      <Text 
-        style={{
-          color: getTextColorWithTheme(theme)
-        }}
-      >
-        Stats Text
-      </Text>
+      {
+        answerArr.length === 0 ?
+          <NoStats />
+        :
+        <Text 
+          style={{
+            color: getTextColorWithTheme(theme)
+          }}
+        >
+          Stats Text
+        </Text>
+      }
     </View>
   );
 }
+
+export const Stats = connect(
+  (state: IState) => ({
+    answerArr: state.statsAsw
+  })
+)(stats);
