@@ -3,8 +3,8 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { Graphic } from './Graphic';
 import { NoStats } from './NoStats';
 
 interface IProps {
@@ -25,13 +25,7 @@ function stats({ answerArr }: IProps) {
         answerArr.length === 0 ?
           <NoStats />
         :
-        <Text 
-          style={{
-            color: getTextColorWithTheme(theme)
-          }}
-        >
-          Stats Text
-        </Text>
+        <Graphic />
       }
     </View>
   );

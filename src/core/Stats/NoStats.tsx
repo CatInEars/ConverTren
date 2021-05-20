@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { Picture } from './Picture';
 
