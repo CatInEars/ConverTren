@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../../common/commonStyles';
 import { localization } from '../../../modules/localization/localization';
+import { getStatsColor } from '../../../modules/other/getStatsColor';
 import { getTextColorWithTheme } from '../../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../../modules/theme/ThemeContext';
 import { ExitButton } from './ExitButton';
@@ -76,7 +77,7 @@ function endScreen({
         <Text
           style={{
             ...commonStyles.endScreenAverage,
-            color: average > 80 ? 'green' : (+average > 50 ? 'orange' : 'red')
+            color: getStatsColor(average)
           }}
         >
           {average}%

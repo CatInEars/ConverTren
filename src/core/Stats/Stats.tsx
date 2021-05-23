@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { commonStyles } from '../../common/commonStyles';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
@@ -9,6 +9,7 @@ import { NoStats } from './NoStats';
 
 interface IProps {
   answerArr: number[]
+
 }
 
 function stats({ answerArr }: IProps) {

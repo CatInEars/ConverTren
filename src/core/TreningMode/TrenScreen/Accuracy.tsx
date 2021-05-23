@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { commonStyles } from '../../../common/commonStyles';
 import { localization } from '../../../modules/localization/localization';
+import { getStatsColor } from '../../../modules/other/getStatsColor';
 import { getTextColorWithTheme } from '../../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../../modules/theme/ThemeContext';
 
@@ -52,7 +53,7 @@ export function Accuracy({ procent, trueAsw, outputCurrency, lang }: IProps) {
         </Text>
         <Text 
           style={{ 
-            color: +procent > 80 ? 'green' : (+procent > 50 ? 'orange' : 'red'),
+            color: getStatsColor(+procent),
             ...commonStyles.trenModeAccuracyText
           }}
         >
