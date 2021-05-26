@@ -140,5 +140,29 @@ export const localization: any = {
       rus: 'Средняя точность',
       eng: 'Average accuracy'
     }
+  },
+  statsScreen: {
+    statsDescr: {
+      brilliant: {
+        rus: 'Бриллиантовый ход',
+        eng: 'Diamond move',
+      },
+      good: {
+        rus: 'Хороший ход',
+        eng: 'Good move'
+      },
+      okay: {
+        rus: 'Сомнительный ход',
+        eng: 'Questionable move'
+      },
+      bad: {
+        rus: 'Плохой ход',
+        eng: 'Bad move'
+      },
+      accuracy: {
+        rus: 'Точность',
+        eng: 'Accuracy'
+      }
+    }
   }
 }

@@ -287,5 +287,29 @@ export const commonStyles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     color: 'darkgray'
+  },
+  statsDescriptionContainer: {
+    height: 45,
+    marginTop: 28,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  statsCube: {
+    width: 37,
+    height: 37,
+    borderRadius: 4
+  },
+  statsDescriptionTextContainer: {
+    marginLeft: 18,
+  },
+  statsDescriptionTitle: {
+    fontFamily: 'OpenSans-SemiBold'
+  },
+  statsDescriptionText: {
+    fontFamily: 'OpenSans-Regular'
+  },
+  statsDescriptionCount: {
+    position: 'absolute',
+    right: 8,
   }
 });

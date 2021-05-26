@@ -6,27 +6,41 @@ import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
 import { Graphic } from './Graphic';
 import { NoStats } from './NoStats';
+import { StatsDescription } from './StatsDescription';
 
 interface IProps {
   answerArr: number[]
-
+  data: IPieData[]
 }
 
-function stats({ answerArr }: IProps) {
+function stats({ answerArr, data }: IProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
     <View 
       style={{
         ...commonStyles._center,
-        backgroundColor: getBGCWithTheme(theme)
+        backgroundColor: getBGCWithTheme(theme),
+        paddingTop: 64
       }}
     >
       {
         answerArr.length === 0 ?
           <NoStats />
         :
-        <Graphic />
+        <View 
+          style={{
+            ...commonStyles._center, 
+            width: '100%'
+          }}
+        >
+          <Graphic 
+            pieData={data}
+          />
+          <StatsDescription 
+            data={data}
+          />
+        </View>
       }
     </View>
   );
@@ -34,6 +48,7 @@ function stats({ answerArr }: IProps) {
 
 export const Stats = connect(
   (state: IState) => ({
-    answerArr: state.statsAsw
+    answerArr: state.statsAsw,
+    data: state.sortedAnswers
   })
 )(stats);

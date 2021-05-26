@@ -1,3 +1,4 @@
+import { pieDataExample } from "../other/pieDataExample";
 import { initialState } from "./initialState";
 
 export function rootReducer(state = initialState, action: IAction): IState {
@@ -20,12 +21,28 @@ export function rootReducer(state = initialState, action: IAction): IState {
 
     return newState
   } else if (action.type === 'SEND_PROCENT') {
+
+    const newStateAsw = [
+      ...state.statsAsw,
+      action.procent
+    ];
+
+    const pieData = [...state.sortedAnswers];
+
+    if (newStateAsw[newStateAsw.length - 1] >= 98) {
+      pieData[0].value++;
+    } else if (newStateAsw[newStateAsw.length - 1] > 80) {
+      pieData[1].value++;
+    } else if (newStateAsw[newStateAsw.length - 1] > 60) {
+      pieData[2].value++;
+    } else {
+      pieData[3].value++;
+    }
+    
     return {
       ...state,
-      statsAsw: [
-        ...state.statsAsw,
-        action.procent
-      ]
+      statsAsw: newStateAsw,
+      sortedAnswers: pieData
     }
   } else if (action.type === 'CHANGE_TIMER_NEED') {
     return {

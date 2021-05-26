@@ -4,7 +4,8 @@ interface IState {
   currency2: ICurrency,
   currencyList: ICurrencyItem[],
   statsAsw: number[],
-  timerNeed: boolean
+  timerNeed: boolean,
+  sortedAnswers: IPieData[];
 }
 
 type ILanguage = 'rus' | 'eng';
