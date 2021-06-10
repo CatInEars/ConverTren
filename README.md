@@ -1,10 +1,10 @@
 <h1>ConverTren</h1>
 
 <ul>
-  <li><a href="howtostart">Как запустить</a></li>
-  <li><a href="whatisthegoal">Основная цель</a></li>
-  <li><a href="whatilearned">Чему научился</a></li>
-  <li><a href="devproblem">Проблемы с которыми столкнулся</a></li>
+  <li><a href="#howtostart">Как запустить</a></li>
+  <li><a href="#whatisthegoal">Основная цель</a></li>
+  <li><a href="#whatilearned">Чему научился</a></li>
+  <li><a href="#devproblem">Проблемы с которыми столкнулся</a></li>
 </ul>
 
 <h2 id="howtostart">Как запустить?</h2>
