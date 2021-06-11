@@ -275,13 +275,13 @@ export const commonStyles = StyleSheet.create({
     fontSize: 10, 
     color: 'lightgray',
   },
-  noFoundTitle: {
+  bannerTitle: {
     fontSize: 24,
     fontFamily: 'OpenSans-SemiBold',
     textAlign: 'center',
     color: 'darkgray'
   },
-  noFoundText: {
+  bannerText: {
     fontSize: 16,
     justifyContent: 'center',
     alignItems: 'center',

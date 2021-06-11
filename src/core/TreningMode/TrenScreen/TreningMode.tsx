@@ -92,7 +92,7 @@ function treningMode({
       navigation.addListener('beforeRemove', modalCall);
     }
 
-    if (page === 3) {
+    if (page === 6) {
       setTimerDo(false);
     } else {
       timerValue.setValue(0);
@@ -158,7 +158,7 @@ function treningMode({
       }}
     >
       {
-        (page < 3 && !timeIsOut) ?
+        (page < 6 && !timeIsOut) ?
           <>
             <BackButton
               theme={theme}

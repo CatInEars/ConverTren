@@ -163,6 +163,26 @@ export const localization: any = {
         rus: 'Точность',
         eng: 'Accuracy'
       }
+    },
+    noStats: {
+      title: {
+        rus: 'Тут пусто!',
+        eng: "Here is empty"
+      },
+      desc: {
+        rus: 'Но не всё потеряно, пройди тренировку что бы открыть экран статистики',
+        eng: 'But all is not lost, go through the training to open the statistics screen'
+      }
+    }
+  },
+  inBuild: {
+    title: {
+      rus: 'В разработке',
+      eng: 'In development'
+    },
+    descr: {
+      rus: 'К сожалению, данный раздел пока не доступен, т.к он находится в разработке',
+      eng: 'Unfortunately, this section is not yet available, because it is under development'
     }
   }
 }
