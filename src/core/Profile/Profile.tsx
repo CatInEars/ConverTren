@@ -1,53 +1,26 @@
-import React, { Dispatch, useContext } from 'react';
-import { View, Text, Button } from 'react-native';
-import { connect } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { commonStyles } from '../../common/commonStyles';
-import { DARK, LIGHT } from '../../common/themes';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
-import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { SettingsIcon } from '../svgs/others/SettingsIcon';
 
-interface IProps {
-  onChangeLanguage: Dispatch<any>
-}
-
-function profile({ onChangeLanguage }: IProps) {
+export function Profile() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { navigate } = useNavigation();
   
   return (
     <View style={{
       ...commonStyles._center,
       backgroundColor: getBGCWithTheme(theme)
     }}>
-      <Text 
-        style={{
-          color: getTextColorWithTheme(theme)
-        }}
+      <TouchableWithoutFeedback
+        onPress={() => navigate('Settings')}
       >
-        Profile Text
-      </Text>
-
-      <Button
-        title="CHANGE THEME"
-        onPress={() => toggleTheme(theme === DARK ? LIGHT : DARK)}
-      />
-      <Button
-        title="SELECT RUS"
-        onPress={() => onChangeLanguage('rus')}
-      />
-      <Button
-        title="SELECT ENG"
-        onPress={() => onChangeLanguage('eng')}
-      />
+        <SettingsIcon />
+      </TouchableWithoutFeedback>
     </View>
   );
 }
-
-export const Profile = connect(
-  (state: IState) => ({}),
-  (dispatch: Dispatch<ILanguageAction>): IProps => ({
-    onChangeLanguage: (lang: ILanguage) => {
-      dispatch({ type: 'CHANGE_LOCALIZATION', languageSet: lang });
-    }
-  })
-)(profile);

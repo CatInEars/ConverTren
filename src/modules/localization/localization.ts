@@ -23,6 +23,12 @@ export const localization: any = {
         rus: 'Профиль',
         eng: 'Profile'
       }
+    },
+    Settings: {
+      title: {
+        rus: 'Настройки',
+        eng: 'Settings'
+      }
     }
   },
   TrenScreen: {

@@ -2,7 +2,8 @@ import React from 'react';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { TrenModeScreen } from '../screens/TrenModeScreen';
 import { MainTabNavigator } from './MainTabNavigator';
-import { CurrencySelectModal } from '../modules/CurrencySelectModal'
+import { CurrencySelectModal } from '../modules/CurrencySelectModal';
+import { SettingsScreen } from '../screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export function MainStackNavigation() {
           cardStyleInterpolator: CardStyleInterpolators.forRevealFromBottomAndroid
         }}
       />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 }
