@@ -311,5 +311,24 @@ export const commonStyles = StyleSheet.create({
   statsDescriptionCount: {
     position: 'absolute',
     right: 8,
+  },
+  profileScreen: {
+    padding: 24,
+    flex: 1
+  },
+  profileImage: {
+    width: 100, 
+    height: 100, 
+    backgroundColor: 'skyblue',
+    borderRadius: 50
+  },
+  profileTittleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  profileName: {
+    fontSize: 18,
+    fontFamily: 'OpenSans-SemiBold',
+    marginBottom: 8
   }
 });

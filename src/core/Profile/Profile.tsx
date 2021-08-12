@@ -1,26 +1,40 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import { View } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { View, Text } from 'react-native';
 import { commonStyles } from '../../common/commonStyles';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
+import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
-import { SettingsIcon } from '../svgs/others/SettingsIcon';
+import { ProfileImage } from './ProfileImage';
+import { SettingsButton } from './SettingsButton';
 
 export function Profile() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  const { navigate } = useNavigation();
+  const { theme } = useContext(ThemeContext);
   
   return (
     <View style={{
-      ...commonStyles._center,
+      ...commonStyles.profileScreen,
       backgroundColor: getBGCWithTheme(theme)
     }}>
-      <TouchableWithoutFeedback
-        onPress={() => navigate('Settings')}
-      >
-        <SettingsIcon />
-      </TouchableWithoutFeedback>
+
+      <View style={commonStyles.profileTittleContainer}>
+
+        <ProfileImage />
+
+        <View style={{paddingLeft: 24}}>
+          <Text 
+              style={{
+                color: getTextColorWithTheme(theme),
+                ...commonStyles.profileName
+              }}
+            >
+            CatInEars
+          </Text>
+
+          <SettingsButton />
+        </View>
+
+      </View>
+        
     </View>
   );
 }
