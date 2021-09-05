@@ -190,5 +190,13 @@ export const localization: any = {
       rus: 'К сожалению, данный раздел пока не доступен, т.к он находится в разработке',
       eng: 'Unfortunately, this section is not yet available, because it is under development'
     }
+  },
+  settingsScreen: {
+    params: {
+      language: {
+        rus: 'Язык',
+        eng: 'Language'
+      }
+    }
   }
 }

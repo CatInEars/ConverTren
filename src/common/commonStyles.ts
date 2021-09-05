@@ -330,5 +330,48 @@ export const commonStyles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'OpenSans-SemiBold',
     marginBottom: 8
+  },
+  settingsScreenParamsContainer: {
+    height: 45, 
+    width: '100%', 
+    flexDirection: 'row', 
+    justifyContent: 'space-around',
+  },
+  settingsScreenParamItem: {
+    width: '40%', 
+    height: '100%', 
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  settingsScreenParamText: {
+    fontFamily: 'OpenSans-SemiBold',
+    fontSize: 16
+  },
+  selectScrollContainer: {
+    width: '100%', 
+    position: 'absolute', 
+    top: '130%', 
+    maxHeight: 160, 
+    borderStyle: 'solid', 
+    borderWidth: 1, 
+    borderColor: '#e5e5e5',
+    borderRadius: 8
+  },
+  selectBannerContainer: { 
+    width: '100%', 
+    height: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    backgroundColor: '#e5e5e5',
+    borderRadius: 8
+  },
+  selectScrollItem: {
+    height: 50, 
+    width: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    borderStyle: 'solid', 
+    borderBottomWidth: 1, 
+    borderBottomColor: '#e5e5e5'
   }
 });
