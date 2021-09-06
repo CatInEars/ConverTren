@@ -9,6 +9,7 @@ import { localization } from '../../modules/localization/localization';
 import { getBGCWithTheme } from '../../modules/theme/getBGCWithTheme';
 import { getTextColorWithTheme } from '../../modules/theme/getTextColorWithTheme';
 import { ThemeContext } from '../../modules/theme/ThemeContext';
+import { ParamsLine } from './ParamsLine';
 
 interface IProps {
   onChangeLanguage: Dispatch<any>,
@@ -29,26 +30,11 @@ function settings({
     }}>
 
       <View style={commonStyles.settingsScreenParamsContainer}>
-        <View
-          style={commonStyles.settingsScreenParamItem}
-        >
-          <Text
-            style={{
-              ...commonStyles.settingsScreenParamText
-              // color: getTextColorWithTheme(theme)
-            }}
-          >
-            {localization.settingsScreen.params.language[language]}
-          </Text>
-        </View>
-
-        <View
-          style={commonStyles.settingsScreenParamItem}
-        >
-          <Select
-            items={['Russian', 'English']}
-          />
-        </View>
+        <ParamsLine 
+          parametries='language'
+        />
+      
+        
       </View>
       
 
@@ -78,3 +64,5 @@ export const Settings = connect(
     }
   })
 )(settings)
+
+// BIG TODO!!!!!

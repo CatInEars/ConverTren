@@ -3,16 +3,16 @@ import { View, ViewStyle } from 'react-native';
 import { SelectBanner } from './SelectBanner';
 import { SelectList } from './SelectList';
 
-type Item = string | number;
+type SelectItem = string | number;
 
 interface ISelectProps {
   items: string[] | number[],
-  onSelectItem?: (newItem?: Item) => boolean | void,
+  onSelectItem?: (newItem?: SelectItem) => boolean | void,
   containerStyle?: ViewStyle,
   defaultItemIndex?: number
 }
 
-const defaultStyle: ViewStyle = {
+const defaultSelectStyle: ViewStyle = {
   width: 160,
   height: 30,
   borderRadius: 8,
@@ -22,7 +22,7 @@ const defaultStyle: ViewStyle = {
 export function Select({
   items,
   onSelectItem,
-  containerStyle = defaultStyle,
+  containerStyle = defaultSelectStyle,
   defaultItemIndex = 0
 }: ISelectProps) {
 
@@ -31,16 +31,16 @@ export function Select({
 
   useEffect(() => {
     if (items.length === 0) {
-      throw new Error('Select component:  Should have some items')
+      throw new Error('Select component should have some items')
     }
   }, []);
 
   useEffect(() => {
     setIsShow(false);
-  }, [activeItem])
+  }, [activeItem]);
 
   return (
-    <View style={{...containerStyle, position: 'relative'}}>
+    <View style={containerStyle}>
       <SelectBanner 
         activeItem={activeItem}
         isShow={isShow}
@@ -51,6 +51,7 @@ export function Select({
           <SelectList
             items={items}
             setActiveItem={setActiveItem}
+            onSelectItem={onSelectItem}
           />
         :
           null
@@ -59,21 +60,3 @@ export function Select({
   );
 
 }
-    // <TouchableOpacity
-    //   onPress={() => setIsShow(!isShow)}
-    //   style={containerStyle}
-    // >
-
-
-    //   {
-    //     <FlatList 
-    //       data={items}
-    //       renderItem={({ item, index}) => (
-    //         <View style={{...commonStyles._center, }}>
-    //           <Text>{item}</Text>
-    //         </View>
-    //       )}
-    //       keyExtractor={(index) => index.toString()}
-    //     />
-    //   }
-    // </TouchableOpacity>

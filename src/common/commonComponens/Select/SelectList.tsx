@@ -6,12 +6,19 @@ import { commonStyles } from '../../commonStyles';
 interface ISelectList {
   items: number[] | string[],
   setActiveItem: (newItem: string | number) => void
+  onSelectItem?: (item: string | number) => void
 }
 
 export function SelectList({
   items,
-  setActiveItem
+  setActiveItem,
+  onSelectItem
 }: ISelectList) {
+
+  const handlePress = (item) => {
+    setActiveItem(item);
+    onSelectItem(item);
+  }
   return (
     <ScrollView
       style={commonStyles.selectScrollContainer}
@@ -19,11 +26,17 @@ export function SelectList({
       {
         items.map((item, index) => (
           <TouchableOpacity
-            onPress={() => setActiveItem(item)}
+            onPress={() => handlePress(item)}
             style={commonStyles.selectScrollItem}
             key={index.toString()}
           >
-            <Text>{item}</Text>
+            <Text
+              style={{
+                fontFamily: 'OpenSans-Regular'
+              }}
+            >
+              {item}
+            </Text>
           </TouchableOpacity>
         ))
       }
