@@ -196,6 +196,20 @@ export const localization: any = {
       language: {
         rus: 'Язык',
         eng: 'Language'
+      },
+      theme: {
+        rus: 'Тема',
+        eng: 'Theme'
+      }
+    },
+    themeSelect: {
+      lightTheme: {
+        rus: 'Светлая',
+        eng: 'Light'
+      },
+      darkTheme: {
+        rus: 'Тёмная',
+        eng: 'Dark'
       }
     }
   }

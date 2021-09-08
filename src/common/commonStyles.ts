@@ -349,7 +349,8 @@ export const commonStyles = StyleSheet.create({
   },
   selectScrollContainer: {
     width: '100%', 
-    position: 'absolute', 
+    position: 'absolute',
+    zIndex: 2,
     top: '130%', 
     maxHeight: 160, 
     borderStyle: 'solid', 

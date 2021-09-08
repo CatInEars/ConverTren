@@ -23,6 +23,22 @@ function settings({
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
+  const handleChangeTheme = (selectValue) => {
+    if (language === 'rus') {
+      selectValue = selectValue === 'Светлая' ? LIGHT : DARK
+    } else {
+      selectValue = selectValue === 'Light' ? LIGHT : DARK
+    }
+
+    toggleTheme(selectValue);
+  }
+
+  const handleChangeLanguage = (selectValue) => {
+    selectValue = selectValue === 'English' ? 'eng' : 'rus';
+
+    onChangeLanguage(selectValue)
+  }
+
   return (
     <View style={{
       ...commonStyles._center,
@@ -31,18 +47,19 @@ function settings({
 
       <View style={commonStyles.settingsScreenParamsContainer}>
         <ParamsLine 
-          parametries='language'
+          parametries='theme'
+          onChangeAnyProps={handleChangeTheme}
         />
-      
-        
       </View>
-      
 
+      <View style={commonStyles.settingsScreenParamsContainer}>
+        <ParamsLine 
+          parametries='language'
+          onChangeAnyProps={handleChangeLanguage}
+        />
+      </View>
+    
       {/* <Button
-        title="CHANGE THEME"
-        onPress={() => toggleTheme(theme === DARK ? LIGHT : DARK)}
-      />
-      <Button
         title="SELECT RUS"
         onPress={() => onChangeLanguage('rus')}
       />
@@ -63,6 +80,4 @@ export const Settings = connect(
       dispatch({ type: 'CHANGE_LOCALIZATION', languageSet: lang})
     }
   })
-)(settings)
-
-// BIG TODO!!!!
+)(settings);

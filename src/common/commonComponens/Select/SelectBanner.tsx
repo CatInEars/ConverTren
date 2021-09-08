@@ -25,7 +25,7 @@ export function SelectBanner({
     >
       <Text
         style={{
-          color: getTextColorWithTheme(theme),
+          color: 'black',
           fontFamily: 'OpenSans-Regular'
         }}
       >

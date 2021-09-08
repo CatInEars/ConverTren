@@ -1,6 +1,8 @@
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import React, { useContext } from 'react';
+import { Text, TouchableHighlight, ScrollView } from 'react-native';
+import { getBGCWithTheme } from '../../../modules/theme/getBGCWithTheme';
+import { getTextColorWithTheme } from '../../../modules/theme/getTextColorWithTheme';
+import { ThemeContext } from '../../../modules/theme/ThemeContext';
 import { commonStyles } from '../../commonStyles';
 
 interface ISelectList {
@@ -15,6 +17,8 @@ export function SelectList({
   onSelectItem
 }: ISelectList) {
 
+  const { theme } = useContext(ThemeContext);
+
   const handlePress = (item) => {
     setActiveItem(item);
     onSelectItem(item);
@@ -25,19 +29,23 @@ export function SelectList({
     >
       {
         items.map((item, index) => (
-          <TouchableOpacity
+          <TouchableHighlight
             onPress={() => handlePress(item)}
-            style={commonStyles.selectScrollItem}
+            style={{
+              ...commonStyles.selectScrollItem,
+              backgroundColor: getBGCWithTheme(theme)
+            }}
             key={index.toString()}
           >
             <Text
               style={{
-                fontFamily: 'OpenSans-Regular'
+                fontFamily: 'OpenSans-Regular',
+                color: getTextColorWithTheme(theme)
               }}
             >
               {item}
             </Text>
-          </TouchableOpacity>
+          </TouchableHighlight>
         ))
       }
     </ScrollView>
